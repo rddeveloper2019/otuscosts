@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import TextButton from '../../../shared/components/text-button';
 import { TextButtonState } from '@/shared/components/text-button/types.ts';
 import { useTranslation } from 'react-i18next';
+import { TextButton } from '@/shared/components/text-button';
 
 export const AuthFeature = () => {
   const [isAuth] = useState(false);

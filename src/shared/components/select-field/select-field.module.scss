@@ -1,0 +1,11 @@
+@use 'src/shared/theme/variables';
+
+.select {
+  font-size: variables.$font-size-m;
+  padding: 10px;
+  background-color: variables.$background-main;
+  color: variables.$color-default;
+  border-color: variables.$border-color-card-main;
+  border-radius: 4px;
+  outline: none;
+}

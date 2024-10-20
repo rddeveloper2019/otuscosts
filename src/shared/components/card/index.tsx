@@ -11,7 +11,7 @@ export type CardPropsType = PropsWithChildren<{
   className?: string;
 }>;
 
-const Card: FC<CardPropsType> = ({
+export const Card: FC<CardPropsType> = ({
   children,
   width,
   onIntersect,
@@ -57,5 +57,3 @@ const Card: FC<CardPropsType> = ({
     </div>
   );
 };
-
-export default Card;

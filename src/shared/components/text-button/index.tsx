@@ -14,7 +14,7 @@ export type TextButtonPropsTypes = {
   type: ButtonType;
 };
 
-const TextButton: FC<TextButtonPropsTypes> = ({
+export const TextButton: FC<TextButtonPropsTypes> = ({
   children = 'Click',
   state = TextButtonState.DEFAULT,
   handleClick,
@@ -45,5 +45,3 @@ const TextButton: FC<TextButtonPropsTypes> = ({
     </button>
   );
 };
-
-export default TextButton;

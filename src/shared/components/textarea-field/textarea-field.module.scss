@@ -1,0 +1,22 @@
+@use 'src/shared/theme/variables';
+
+.textarea {
+  font-size: variables.$font-size-m;
+  padding: 10px;
+  background-color: variables.$background-main;
+  color: variables.$color-default;
+  border-color: variables.$border-color-card-main;
+  border-radius: 4px;
+  &::placeholder {
+    color: variables.$color-placeholder;
+  }
+
+  &.error {
+    border-color: variables.$border-color-warn;
+    outline: none;
+  }
+}
+
+.error-hint {
+  color: red;
+}
