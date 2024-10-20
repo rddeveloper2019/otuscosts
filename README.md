@@ -4,6 +4,7 @@ https://otuscosts.onrender.com/
 ```React 18```
 ```Typescript```
 ```React Router 6```
+```Redux Toolkit```
 ```GraphQL```
 ```Apollo```
 ```Vitest```
