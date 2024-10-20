@@ -1,0 +1,6 @@
+@use '@/shared/theme/variables.scss';
+.layout {
+}
+.content {
+  margin-top: variables.$safe-area-top;
+}

@@ -5,7 +5,7 @@ export type FullscreenLoaderProps = {
   active: boolean;
 };
 
-export const Index: FC<FullscreenLoaderProps> = ({ active }) => {
+export const FullscreenLoader: FC<FullscreenLoaderProps> = ({ active }) => {
   if (!active) {
     return null;
   }
@@ -16,5 +16,3 @@ export const Index: FC<FullscreenLoaderProps> = ({ active }) => {
     </div>
   );
 };
-
-export default Index;
