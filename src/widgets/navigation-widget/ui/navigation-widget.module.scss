@@ -1,0 +1,13 @@
+@use '@/shared/theme/variables';
+
+.links {
+  display: flex;
+  gap: 5px;
+  button {
+    padding: 5px;
+    // font-size: variables.$font-size-sm;
+    &:has(> [class='active']) {
+      border-bottom: 1px solid variables.$color-link;
+    }
+  }
+}

@@ -2,13 +2,13 @@ import styles from './layout.module.scss';
 import { FC, PropsWithChildren, ReactNode } from 'react';
 
 export type LayoutProps = PropsWithChildren & {
-  header: ReactNode;
+  headerWidget: ReactNode;
 };
 
-export const Layout: FC<LayoutProps> = ({ header, children }) => {
+export const Layout: FC<LayoutProps> = ({ headerWidget, children }) => {
   return (
     <div className={styles.layout}>
-      <div>{header}</div>
+      <div>{headerWidget}</div>
       <div className={styles.content}>{children}</div>
     </div>
   );

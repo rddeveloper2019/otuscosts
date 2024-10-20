@@ -2,7 +2,8 @@
 
 .header {
   background-color: variables.$background-primary;
-  padding: 8px 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   color: variables.$color-main;
   display: flex;
   justify-content: space-between;
@@ -11,64 +12,7 @@
   height: variables.$safe-area-top;
   position: fixed;
   top: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
   z-index: 100;
-}
-
-.nav {
-  button {
-    font-size: variables.$font-size-m;
-  }
-}
-
-.flex {
-  display: flex;
-  justify-content: space-around;
-  &.p-40 {
-    padding: 40px;
-  }
-}
-
-.logo-block {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.login {
-  display: flex;
-  gap: 10px;
-
-  .theme {
-    display: flex;
-    align-items: center;
-    button {
-      padding: 5px;
-      font-size: variables.$font-size-sm;
-    }
-    button.icon {
-      font-size: variables.$font-size-xl;
-    }
-  }
-}
-
-.links {
-  display: flex;
-  gap: 5px;
-  button {
-    padding: 5px;
-    // font-size: variables.$font-size-sm;
-    &:has(> [class='active']) {
-      border-bottom: 1px solid variables.$color-link;
-    }
-  }
-}
-
-.error-message {
-  color: variables.$color-warn;
-
-  text-align: center;
-  &.p-40 {
-    padding: 40px;
-  }
 }

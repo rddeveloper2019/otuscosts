@@ -1,3 +1,20 @@
+import TextButton from '@/shared/text-button';
+import { useState } from 'react';
+import { Theme } from '@/shared/theme/types.ts';
+import { TextButtonState } from '@/shared/text-button/types.ts';
+import styles from './theme-feature.module.scss';
+
 export const ThemeFeature = () => {
-  return <div>ThemeFeature</div>;
+  const [theme] = useState<Theme>(Theme.DARK);
+  return (
+    <TextButton
+      type="button"
+      state={TextButtonState.WHITE}
+      className={styles.icon}
+      handleClick={() => console.log('toggle theme')}
+    >
+      {theme === Theme.DARK && '☼'}
+      {theme === Theme.LIGHT && '☾'}
+    </TextButton>
+  );
 };

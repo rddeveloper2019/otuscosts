@@ -1,0 +1,40 @@
+@use '@/shared/theme/variables';
+
+.text-button {
+  text-transform: uppercase;
+  background-color: transparent;
+  border: none;
+  padding: 10px 15px;
+  &:active {
+    transform: translateY(-2px);
+  }
+}
+
+.default {
+  color: variables.$color-default;
+}
+.primary {
+  color: variables.$color-primary;
+}
+.secondary {
+  color: variables.$color-warn;
+}
+.disabled {
+  color: variables.$color-disabled;
+}
+.link {
+  a {
+    color: variables.$color-link;
+    text-decoration: none;
+  }
+}
+.disabled,
+.link {
+  a,
+  &:active {
+    transform: none;
+  }
+}
+.white {
+  color: variables.$color-main;
+}

@@ -1,5 +1,5 @@
-import styles from './header.module.scss';
 import { FC, ReactNode } from 'react';
+import styles from './header.module.scss';
 
 type HeaderProps = {
   logo: ReactNode;

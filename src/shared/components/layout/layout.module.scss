@@ -1,6 +1,8 @@
 @use '@/shared/theme/variables.scss';
-.layout {
+.layout * {
+  font-size: 16px;
 }
 .content {
   margin-top: variables.$safe-area-top;
+  padding: 10px 20px;
 }
