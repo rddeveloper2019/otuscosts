@@ -1,8 +1,8 @@
-import TextButton from '@/shared/text-button';
 import { NavLink } from 'react-router-dom';
-import { TextButtonState } from '@/shared/text-button/types.ts';
+import { TextButtonState } from '@/shared/components/text-button/types.ts';
 import styles from './navigation-widget.module.scss';
 import { useTranslation } from 'react-i18next';
+import TextButton from '@/shared/components/text-button';
 
 export const NavigationWidget = () => {
   const { t } = useTranslation();

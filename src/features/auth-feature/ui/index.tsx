@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import TextButton from '@/shared/text-button';
-import { TextButtonState } from '@/shared/text-button/types.ts';
+import TextButton from '../../../shared/components/text-button';
+import { TextButtonState } from '@/shared/components/text-button/types.ts';
 import { useTranslation } from 'react-i18next';
 
 export const AuthFeature = () => {

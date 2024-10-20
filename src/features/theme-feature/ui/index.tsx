@@ -1,7 +1,7 @@
-import TextButton from '@/shared/text-button';
+import TextButton from '../../../shared/components/text-button';
 import { useState } from 'react';
 import { Theme } from '@/shared/theme/types.ts';
-import { TextButtonState } from '@/shared/text-button/types.ts';
+import { TextButtonState } from '@/shared/components/text-button/types.ts';
 import styles from './theme-feature.module.scss';
 
 export const ThemeFeature = () => {

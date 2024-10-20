@@ -1,0 +1,59 @@
+@use 'src/theme/variables';
+
+.slider {
+  height: 60px;
+  position: relative;
+  background-color: variables.$color-disabled;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: variables.$main-shadow;
+  .left-value {
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    z-index: 10;
+    color: variables.$color-main;
+  }
+  .right-value {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    z-index: 10;
+    color: variables.$color-main;
+    border-radius: 6px;
+  }
+}
+
+.left {
+  position: absolute;
+  height: 100%;
+  overflow: hidden;
+  resize: horizontal;
+  background-color: variables.$color-disabled;
+  z-index: 2;
+  cursor: e-resize;
+  &::-webkit-resizer {
+    display: block;
+    border-right: 4px solid variables.$border-color-warn;
+  }
+}
+
+.right {
+  position: absolute;
+  height: 100%;
+  overflow: hidden;
+  background: variables.$background-primary;
+  z-index: 1;
+  resize: horizontal;
+  cursor: e-resize;
+  &::-webkit-resizer {
+    display: block;
+    border-right: 4px solid variables.$border-color-warn;
+  }
+}
+
+.values {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

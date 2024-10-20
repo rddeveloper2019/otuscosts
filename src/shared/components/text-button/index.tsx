@@ -1,7 +1,7 @@
 import { FC, MouseEvent, ReactNode } from 'react';
 import styles from './text-button.module.scss';
 import cn from 'clsx';
-import { TextButtonState } from '@/shared/text-button/types.ts';
+import { TextButtonState } from '@/shared/components/text-button/types.ts';
 
 type ButtonType = 'submit' | 'button';
 
