@@ -1,4 +1,58 @@
 @use 'src/shared/theme/variables';
 
 .operation-entity {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  width: 100%;
+  cursor: pointer;
+
+  .operation-entity-content {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+    flex-grow: 1;
+    gap: 8px;
+    width: 150px;
+    .amount {
+      color: variables.$color-warn;
+    }
+  }
+
+  .logo {
+    overflow: hidden;
+
+    margin-right: 16px;
+
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+  }
+
+  .category {
+    font-size: variables.$font-size-sm;
+    color: variables.$color-disabled;
+  }
+
+  .title {
+    font-size: variables.$font-size-main;
+    font-weight: 700;
+    color: variables.$color-default;
+  }
+
+  .description {
+    color: variables.$color-default;
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .created-at {
+    color: variables.$color-disabled;
+  }
 }

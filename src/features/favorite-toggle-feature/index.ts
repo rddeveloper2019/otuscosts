@@ -1,0 +1,1 @@
+export { FavoriteToggleFeature } from './ui';

@@ -1,0 +1,1 @@
+export { OperationDetailWidgetWidget } from './ui';
