@@ -52,32 +52,7 @@ export const OperationEntity: FC<OperationEntityProps> = ({
           <div className={cn(styles['created-at'])}>{operationDate}</div>
         )}
       </div>
-      <div className={styles['edit-buttons']}>
-        {/*<TextButton*/}
-        {/*  type="button"*/}
-        {/*  state={isFavorite ? TextButtonState.SECONDARY : TextButtonState.PRIMARY}*/}
-        {/*  className={cn(styles['edit-button'], styles.large)}*/}
-        {/*  handleClick={onFavoriteItemToggle}*/}
-        {/*>*/}
-        {/*  ★*/}
-        {/*</TextButton>*/}
-
-        {/*{isAuth && isButtonActive && (*/}
-        {/*  <TextButton*/}
-        {/*    type="button"*/}
-        {/*    state={TextButtonState.PRIMARY}*/}
-        {/*    className={styles['edit-button']}*/}
-        {/*    handleClick={openEditForm}*/}
-        {/*  >*/}
-        {/*    🖊️*/}
-        {/*  </TextButton>*/}
-        {/*)}*/}
-        {/*{modal && (*/}
-        {/*  <ModalControl backgroundClickHandler={() => setModal(false)}>*/}
-        {/*    <OperationForm operation={data} onOperationFormSubmit={editOperation} onCancel={() => setModal(false)} />*/}
-        {/*  </ModalControl>*/}
-        {/*)}*/}
-      </div>
+      <div className={styles['edit-buttons']}></div>
     </div>
   );
 };

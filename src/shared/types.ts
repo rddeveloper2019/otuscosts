@@ -22,7 +22,7 @@ export type Customer = {
 export type Category = {
   id: string;
   name: string;
-  photo?: string;
+  photo?: string | null;
   commandId?: string;
   createdAt?: string;
   updatedAt?: string;
@@ -42,10 +42,11 @@ export type Product = {
 export type BaseOperation = {
   id: string;
   name: string;
-  desc?: string;
+  desc?: string | null;
   createdAt: string;
   amount: number;
-  category: Category;
+  category: Category | null;
+  commandId?: string;
   isFavorite?: boolean;
   photo?: string;
   date?: string;

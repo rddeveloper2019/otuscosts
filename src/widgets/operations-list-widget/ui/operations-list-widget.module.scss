@@ -1,0 +1,11 @@
+@use '@/shared/theme/variables';
+$safe-area: variables.$safe-area-top;
+.operations {
+  max-height: calc(100vh - $safe-area - 16px - 100px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scrollbar-width: none;
+}
