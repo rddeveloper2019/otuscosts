@@ -16,6 +16,7 @@ export const OperationsListWidget: FC<OperationsListPropsType> = ({
   operations,
   addMore,
   isInfinite = true,
+  onItemSelect,
 }) => {
   if (!operations || !operations.length) {
     return null;
@@ -29,6 +30,7 @@ export const OperationsListWidget: FC<OperationsListPropsType> = ({
           width={420}
           isLast={operations.length - 1 === idx}
           onIntersect={() => isInfinite && addMore?.()}
+          onClick={() => onItemSelect?.(operation)}
         >
           <OperationsListItemWidget operation={operation} />
         </Card>

@@ -1,1 +1,1 @@
-export { OperationDetailWidgetWidget } from './ui';
+export { OperationDetailWidget } from './ui';
