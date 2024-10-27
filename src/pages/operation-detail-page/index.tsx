@@ -1,4 +1,4 @@
-import { OperationDetailWidget } from '@/widgets';
+import { OperationDetailWidget, OperationModalFormWidget } from '@/widgets';
 import { operations } from '@/db.ts';
 import { Navigate, useLocation } from 'react-router-dom';
 
@@ -10,5 +10,10 @@ export const OperationDetailPage = () => {
     return <Navigate to="*" />;
   }
 
-  return <OperationDetailWidget operation={operation} />;
+  return (
+    <OperationDetailWidget
+      operation={operation}
+      modalFormWidget={OperationModalFormWidget}
+    />
+  );
 };

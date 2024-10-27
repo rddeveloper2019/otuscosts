@@ -1,4 +1,4 @@
-@use 'src/shared/theme/variables';
+@use '@/shared/theme/variables';
 
 .operation-entity {
   position: relative;
@@ -13,6 +13,7 @@
     flex-direction: column;
     padding-bottom: 5px;
     flex-grow: 1;
+    min-width: 200px;
     gap: 8px;
     .amount {
       color: variables.$color-warn;

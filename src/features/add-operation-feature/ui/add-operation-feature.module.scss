@@ -1,0 +1,15 @@
+@use '@/shared/theme/variables';
+
+$safe-area-top: variables.$safe-area-top;
+$top: calc($safe-area-top + 20px);
+
+.add-button {
+  position: absolute;
+  top: $top;
+  right: 50px;
+  font-size: 30px;
+
+  border: 1px solid variables.$border-color-card-main;
+  box-shadow: variables.$main-shadow;
+  border-radius: 8px;
+}
