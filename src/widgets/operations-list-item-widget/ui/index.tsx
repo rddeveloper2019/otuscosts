@@ -6,10 +6,12 @@ import { FavoriteToggleFeature } from '@/features';
 
 type OperationsListItemWidgetProps = {
   operation: Partial<Operation>;
+  onClick?: () => void;
 };
 
 export const OperationsListItemWidget: FC<OperationsListItemWidgetProps> = ({
   operation,
+  onClick,
 }) => {
   // const operation = data;
   const { date, createdAt, photo, desc, category, isFavorite, ...shortData } =
@@ -22,6 +24,7 @@ export const OperationsListItemWidget: FC<OperationsListItemWidgetProps> = ({
         isFavorite={isFavorite}
         id={operation.id}
         animated={false}
+        onToggleFavorite={() => onClick?.()}
       />
     </div>
   );

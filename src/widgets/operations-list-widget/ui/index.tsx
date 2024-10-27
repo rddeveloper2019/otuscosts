@@ -22,6 +22,10 @@ export const OperationsListWidget: FC<OperationsListPropsType> = ({
     return null;
   }
 
+  const onCardClick = (operation: Operation) => {
+    () => onItemSelect?.(operation);
+  };
+
   return (
     <ul className={styles.operations}>
       {operations.map((operation, idx) => (
@@ -32,7 +36,10 @@ export const OperationsListWidget: FC<OperationsListPropsType> = ({
           onIntersect={() => isInfinite && addMore?.()}
           onClick={() => onItemSelect?.(operation)}
         >
-          <OperationsListItemWidget operation={operation} />
+          <OperationsListItemWidget
+            operation={operation}
+            onClick={() => onItemSelect?.(operation)}
+          />
         </Card>
       ))}
     </ul>
