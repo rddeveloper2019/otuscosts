@@ -12,7 +12,7 @@ type ProfileWidgetProps = {
 export const ProfileWidget: FC<ProfileWidgetProps> = ({ profile }) => {
   return (
     <div className={styles['profile-widget']}>
-      <Card width={400}>
+      <Card>
         <ProfileEntity profile={profile} />
         <div className={styles['features']}>
           <EditProfileModalFormFeature

@@ -14,22 +14,13 @@
     padding-bottom: 5px;
     flex-grow: 1;
     gap: 8px;
-    width: 150px;
     .amount {
       color: variables.$color-warn;
     }
   }
 
-  .logo {
-    overflow: hidden;
-
-    margin-right: 16px;
-
-    img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-    }
+  .photo {
+    margin: 20px;
   }
 
   .category {

@@ -9,6 +9,7 @@ import {
   OperationDetailModalFormFeature,
 } from '@/features';
 import { useModal } from '@/shared/hooks/useModal.ts';
+import { CategoryModalFormFeature } from '@/features/category-modal-form-feature';
 import { TextButton } from '@/shared/components/text-button';
 import { TextButtonState } from '@/shared/components/text-button/types.ts';
 
@@ -19,13 +20,25 @@ type OperationDetailWidgetProps = {
 export const OperationDetailWidget: FC<OperationDetailWidgetProps> = ({
   operation,
 }) => {
-  const { isModalOpen, closeModal, openModal } = useModal();
+  const operationFormModal = useModal();
+
+  const categoryFormModal = useModal();
+
   const onOperationFormSubmit = (data: any) => console.log(data);
+
+  const onCategoryModalOpen = () => {
+    operationFormModal.closeModal();
+    categoryFormModal.openModal();
+  };
+  const onCategoryModalClose = () => {
+    operationFormModal.openModal();
+    categoryFormModal.closeModal();
+  };
 
   return (
     <>
       <div className={styles['operation-detail-widget']}>
-        <Card width={400}>
+        <Card>
           <OperationEntity
             operation={operation}
             onClick={() =>
@@ -42,23 +55,29 @@ export const OperationDetailWidget: FC<OperationDetailWidgetProps> = ({
                 )
               }
             />
-            <EditOperationFeature onClick={openModal} />
+            <EditOperationFeature onClick={operationFormModal.openModal} />
           </div>
         </Card>
       </div>
       <OperationDetailModalFormFeature
-        visible={isModalOpen}
-        onClose={closeModal}
+        visible={operationFormModal.isModalOpen}
+        onClose={operationFormModal.closeModal}
         onOperationFormSubmit={onOperationFormSubmit}
-        addCategoryButton={
+        categoryButtons={
           <TextButton
             state={TextButtonState.SUCCESS}
             type="button"
             className={styles['add-category-button']}
+            handleClick={onCategoryModalOpen}
           >
             +
           </TextButton>
         }
+      />
+      <CategoryModalFormFeature
+        onEdit={() => {}}
+        onCategoryModalClose={onCategoryModalClose}
+        visible={categoryFormModal.isModalOpen}
       />
     </>
   );

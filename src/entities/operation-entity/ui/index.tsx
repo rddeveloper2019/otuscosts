@@ -7,6 +7,7 @@ export type OperationEntityProps = {
   operation: Partial<Operation>;
   onClick?: () => void;
   className?: string;
+  photo?: string;
 };
 
 export const OperationEntity: FC<OperationEntityProps> = ({
@@ -30,28 +31,30 @@ export const OperationEntity: FC<OperationEntityProps> = ({
   const operationDate = new Date(createdAt.toString()).toLocaleDateString('RU');
 
   return (
-    <div
-      className={cn(className, styles['operation-entity'])}
-      onClick={() => onClick?.()}
-    >
-      <div className={cn(styles.logo)}>
-        {photo && <img src={photo} alt={name} />}
+    <>
+      <div
+        className={cn(className, styles['operation-entity'])}
+        onClick={() => onClick?.()}
+      >
+        {photo && (
+          <img src={photo} alt={operation.name} className={styles.photo} />
+        )}
+        <div className={cn(styles['operation-entity-content'])}>
+          {category?.name && (
+            <div className={cn(styles.category)}>{category.name}</div>
+          )}
+          {name && <div className={cn(styles.title)}>{name}</div>}
+          {desc && <div className={cn(styles.description)}>{desc}</div>}
+          {amount && (
+            <div className={cn(styles.amount)}>
+              {amount.toString().replace('.', ', ')} $
+            </div>
+          )}
+          {createdAt && (
+            <div className={cn(styles['created-at'])}>{operationDate}</div>
+          )}
+        </div>
       </div>
-      <div className={cn(styles['operation-entity-content'])}>
-        {category?.name && (
-          <div className={cn(styles.category)}>{category.name}</div>
-        )}
-        {name && <div className={cn(styles.title)}>{name}</div>}
-        {desc && <div className={cn(styles.description)}>{desc}</div>}
-        {amount && (
-          <div className={cn(styles.amount)}>
-            {amount.toString().replace('.', ', ')} $
-          </div>
-        )}
-        {createdAt && (
-          <div className={cn(styles['created-at'])}>{operationDate}</div>
-        )}
-      </div>
-    </div>
+    </>
   );
 };

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { TextButtonState } from '@/shared/components/text-button/types.ts';
 import { TextButton } from '@/shared/components/text-button';
-import styles from './edit-profile-feature.module.scss';
+import styles from './edit-profile-modal-form-feature.module.scss';
 import { Modal } from '@/shared/components/modal';
 import { Card } from '@/shared/components/card';
 import cn from 'clsx';

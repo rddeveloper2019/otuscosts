@@ -12,11 +12,11 @@ export type CustomSelectProps = {
   value: string;
   name: string;
   options: SelectOption[];
-  addButton?: ReactNode;
+  categoryButtons?: ReactNode;
 };
 
 export const SelectField: FC<CustomSelectProps> = forwardRef(
-  ({ options, onChange, value, addButton, ...rest }) => {
+  ({ options, onChange, value, categoryButtons, ...rest }) => {
     return (
       <div className={styles.row}>
         <select
@@ -34,7 +34,9 @@ export const SelectField: FC<CustomSelectProps> = forwardRef(
             </option>
           ))}
         </select>
-        {addButton}
+        {categoryButtons && (
+          <div className={styles.buttons}>{categoryButtons}</div>
+        )}
       </div>
     );
   }

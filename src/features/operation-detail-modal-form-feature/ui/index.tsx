@@ -24,7 +24,7 @@ export type OperationDetailModalFormFeatureProps = {
   operation?: Operation;
   onOperationFormSubmit: (operation: OperationFormType) => void;
   onCancel?: () => void;
-  addCategoryButton?: ReactNode;
+  categoryButtons?: ReactNode;
 };
 
 export type OperationFormType = {
@@ -131,7 +131,7 @@ export const OperationDetailModalFormFeature: FC<
   operation,
   onOperationFormSubmit,
   onCancel,
-  addCategoryButton,
+  categoryButtons,
 }) => {
   const createdAt = operation?.createdAt
     ? new Date(operation.createdAt).toLocaleDateString('en-CA')
@@ -225,7 +225,7 @@ export const OperationDetailModalFormFeature: FC<
                 onChange={onChange}
                 {...rest}
                 options={categories}
-                addButton={addCategoryButton}
+                categoryButtons={categoryButtons}
               />
             )}
           />

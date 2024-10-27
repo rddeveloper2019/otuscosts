@@ -2,7 +2,7 @@ import styles from './profile-entity.module.scss';
 import cn from 'clsx';
 import { FC } from 'react';
 import { Profile } from '@/shared/types.ts';
-
+import photo from '@/public/images/logo.png';
 export type ProfileEntityProps = {
   profile: Profile;
   onClick?: () => void;
@@ -24,6 +24,7 @@ export const ProfileEntity: FC<ProfileEntityProps> = ({
       className={cn(className, styles['profile-entity'])}
       onClick={() => onClick?.()}
     >
+      {photo && <img src={photo} alt="user logo" className={styles.photo} />}
       <div className={cn(styles['operation-entity-content'])}>
         <div className={cn(styles.email)}>
           <p>{email}</p>

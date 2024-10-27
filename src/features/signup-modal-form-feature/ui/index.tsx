@@ -1,4 +1,4 @@
-import styles from './signup-modal-feature.module.scss';
+import styles from './signup-modal-form-feature.module.scss';
 import { FC } from 'react';
 import { Modal } from '@/shared/components/modal';
 import { Card } from '@/shared/components/card';
