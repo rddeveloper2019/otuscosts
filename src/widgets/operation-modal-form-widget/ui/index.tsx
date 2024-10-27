@@ -28,6 +28,10 @@ export const OperationModalFormWidget: FC<OperationModalFormWidgetProps> = ({
     operationFormModal.openModal();
     categoryFormModal.closeModal();
   };
+  const onCategoryModalDismiss = () => {
+    operationFormModal.closeModal();
+    categoryFormModal.closeModal();
+  };
 
   return (
     <>
@@ -50,6 +54,7 @@ export const OperationModalFormWidget: FC<OperationModalFormWidgetProps> = ({
         onEdit={() => {}}
         onCategoryModalClose={onCategoryModalClose}
         visible={categoryFormModal.isModalOpen}
+        onDismiss={onCategoryModalDismiss}
       />
     </>
   );

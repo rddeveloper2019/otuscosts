@@ -26,6 +26,7 @@ type CategoryModalFormFeature = {
   onEdit: () => void;
   visible: boolean;
   onCategoryModalClose: () => void;
+  onDismiss?: () => void;
 };
 
 export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
@@ -33,6 +34,7 @@ export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
   onEdit,
   visible,
   onCategoryModalClose,
+  onDismiss,
 }) => {
   const signUpDate = category?.createdAt
     ? new Date(category.createdAt).toLocaleDateString('en-CA')
@@ -55,6 +57,7 @@ export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
   const handleCancel = () => {
     clearErrors();
     reset();
+    onDismiss?.();
   };
 
   const onConfirm: SubmitHandler<CategoryFormType> = ({ name, photo }) => {
