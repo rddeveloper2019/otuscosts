@@ -17,13 +17,12 @@ export const OperationsListItemWidget: FC<OperationsListItemWidgetProps> = ({
 
   return (
     <div className={styles['operations-list-item-widget']}>
-      <OperationEntity
-        operation={shortData}
-        onClick={() =>
-          console.log('operations-list-item operation entity clicked')
-        }
+      <OperationEntity operation={shortData} />
+      <FavoriteToggleFeature
+        isFavorite={isFavorite}
+        id={operation.id}
+        animated={false}
       />
-      <FavoriteToggleFeature isFavorite={isFavorite} id={operation.id} />
     </div>
   );
 };

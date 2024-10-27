@@ -8,12 +8,14 @@ type FavoriteToggleFeatureProps = {
   id?: string;
   isFavorite?: boolean;
   onToggleFavorite?: () => void;
+  animated?: boolean;
 };
 
 export const FavoriteToggleFeature: FC<FavoriteToggleFeatureProps> = ({
   id,
   isFavorite = false,
   onToggleFavorite,
+  animated = true,
 }) => {
   console.log('(**)=>FavoriteToggleFeature id: ', id);
   return (
@@ -22,6 +24,7 @@ export const FavoriteToggleFeature: FC<FavoriteToggleFeatureProps> = ({
       state={isFavorite ? TextButtonState.SECONDARY : TextButtonState.PRIMARY}
       className={cn(styles['favorite-toggle-button'], styles.large)}
       handleClick={() => onToggleFavorite?.()}
+      animated={animated}
     >
       ★
     </TextButton>

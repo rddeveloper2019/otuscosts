@@ -5,7 +5,7 @@ import { Operation } from '@/shared/types.ts';
 
 export type OperationEntityProps = {
   operation: Partial<Operation>;
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
 };
 
@@ -32,7 +32,7 @@ export const OperationEntity: FC<OperationEntityProps> = ({
   return (
     <div
       className={cn(className, styles['operation-entity'])}
-      onClick={onClick}
+      onClick={() => onClick?.()}
     >
       <div className={cn(styles.logo)}>
         {photo && <img src={photo} alt={name} />}
@@ -52,7 +52,6 @@ export const OperationEntity: FC<OperationEntityProps> = ({
           <div className={cn(styles['created-at'])}>{operationDate}</div>
         )}
       </div>
-      <div className={styles['edit-buttons']}></div>
     </div>
   );
 };

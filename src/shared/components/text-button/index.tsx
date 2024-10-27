@@ -12,6 +12,7 @@ export type TextButtonPropsTypes = {
   disabled?: boolean;
   className?: string;
   type: ButtonType;
+  animated?: boolean;
 };
 
 export const TextButton: FC<TextButtonPropsTypes> = ({
@@ -21,6 +22,7 @@ export const TextButton: FC<TextButtonPropsTypes> = ({
   disabled = false,
   className,
   type,
+  animated = true,
   ...rest
 }) => {
   const onClick = (event: MouseEvent<HTMLButtonElement>) => {
@@ -34,6 +36,7 @@ export const TextButton: FC<TextButtonPropsTypes> = ({
         styles['text-button'],
         styles[state],
         disabled && styles.disabled,
+        animated && styles.animated,
         className
       )}
       onClick={onClick}
