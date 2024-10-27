@@ -1,4 +1,10 @@
-import { FC, MouseEventHandler, PropsWithChildren, ReactElement } from 'react';
+import {
+  FC,
+  MouseEventHandler,
+  PropsWithChildren,
+  ReactElement,
+  useState,
+} from 'react';
 import styles from './modal.module.scss';
 import cn from 'clsx';
 import { createPortal } from 'react-dom';
@@ -20,7 +26,9 @@ export const Modal: FC<ModalPropSTypes> = ({
   backgroundClickHandler,
   visible = true,
 }) => {
-  if (!visible) {
+  const [active, setIsActive] = useState(visible);
+
+  if (!active) {
     return null;
   }
 
@@ -29,7 +37,7 @@ export const Modal: FC<ModalPropSTypes> = ({
     if (event?.target !== event?.currentTarget) {
       return;
     }
-
+    setIsActive(false);
     backgroundClickHandler?.();
   };
 

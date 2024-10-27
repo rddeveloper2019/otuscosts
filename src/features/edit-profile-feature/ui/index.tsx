@@ -9,13 +9,15 @@ type EditProfileFeatureProps = {
 
 export const EditProfileFeature: FC<EditProfileFeatureProps> = ({ onEdit }) => {
   return (
-    <TextButton
-      type="button"
-      state={TextButtonState.PRIMARY}
-      className={styles['edit-button']}
-      handleClick={onEdit}
-    >
-      🖊️
-    </TextButton>
+    <>
+      <TextButton
+        type="button"
+        state={TextButtonState.PRIMARY}
+        className={styles['edit-button']}
+        handleClick={onEdit}
+      >
+        🖊️
+      </TextButton>
+    </>
   );
 };

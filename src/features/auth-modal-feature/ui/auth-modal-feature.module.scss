@@ -1,0 +1,9 @@
+@use 'src/shared/theme/variables';
+
+.auth-modal-feature {
+  display: flex;
+  justify-content: space-evenly;
+  &.p-40 {
+    padding: 40px;
+  }
+}
