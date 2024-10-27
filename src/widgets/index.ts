@@ -1,5 +1,6 @@
 export { NavigationWidget } from './navigation-widget';
-export { UserWidget } from './user-widget';
+export { AuthWidget } from './auth-widget';
+export { ThemeLangWidget } from './theme-lang-widget';
 export { OperationsListItemWidget } from './operations-list-item-widget';
 export { OperationDetailWidget } from './operation-detail-widget';
 export { OperationsListWidget } from './operations-list-widget';

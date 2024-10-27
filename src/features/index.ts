@@ -3,7 +3,7 @@ export { LangFeature } from './lang-feature';
 export { ThemeFeature } from './theme-feature';
 export { FavoriteToggleFeature } from './favorite-toggle-feature';
 export { EditOperationFeature } from './edit-operation-feature';
-export { EditProfileFeature } from './edit-profile-feature';
+export { EditProfileModalFormFeature } from './edit-profile-feature';
 export { AuthModalFeature } from './auth-modal-feature';
 export { SigninModalFormFeature } from './signin-modal-feature';
 export { SignupModalFormFeature } from './signup-modal-feature';

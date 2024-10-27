@@ -4,19 +4,24 @@ import styles from './header.module.scss';
 type HeaderProps = {
   logo: ReactNode;
   navigationWidget: ReactNode;
-  userWidget: ReactNode;
+  themeWidget: ReactNode;
+  authWidget: ReactNode;
 };
 
 export const Header: FC<HeaderProps> = ({
   logo,
   navigationWidget,
-  userWidget,
+  themeWidget,
+  authWidget,
 }) => {
   return (
     <div className={styles.header}>
       {logo}
       {navigationWidget}
-      {userWidget}
+      <div className={styles.widgets}>
+        {themeWidget}
+        {authWidget}
+      </div>
     </div>
   );
 };

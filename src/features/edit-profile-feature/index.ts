@@ -1,1 +1,1 @@
-export { EditProfileFeature } from './ui';
+export { EditProfileModalFormFeature } from './ui';

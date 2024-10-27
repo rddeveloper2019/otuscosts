@@ -23,10 +23,12 @@ export type SigninFormType = {
 export type SigninModalFormFeatureProps = {
   visible?: boolean;
   onAction?: () => void;
+  onClose?: () => void;
 };
 
 export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
   onAction,
+  onClose,
   visible = false,
 }) => {
   // const { login } = useAuthentication();
@@ -49,6 +51,7 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
   const handleCancel = () => {
     clearErrors();
     reset();
+    onClose?.();
     onAction?.();
   };
 
@@ -56,8 +59,8 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
     // login({ email: username, password });
     login();
     console.log('(**)=> onConfirm: ', { username, password });
-
     onAction?.();
+    onClose?.();
   };
 
   const usernameRules: RegisterOptions = {

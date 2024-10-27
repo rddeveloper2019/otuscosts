@@ -24,10 +24,12 @@ export type RegistrationFormType = {
 export type SignupModalFormFeatureProps = {
   visible?: boolean;
   onAction?: (message?: string) => void;
+  onClose?: () => void;
 };
 
 export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
   onAction,
+  onClose,
   visible = false,
 }) => {
   const { register } = { register: () => {} };
@@ -51,6 +53,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
     clearErrors();
     reset();
     onAction?.();
+    onClose?.();
   };
 
   const onConfirm: SubmitHandler<RegistrationFormType> = ({
@@ -63,6 +66,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
       password,
     });
     onAction?.();
+    onClose?.();
   };
 
   const usernameRules: RegisterOptions = {

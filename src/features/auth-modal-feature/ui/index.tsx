@@ -5,25 +5,29 @@ import { Card } from '@/shared/components/card';
 import { TextButton } from '@/shared/components/text-button';
 import { TextButtonState } from '@/shared/components/text-button/types.ts';
 import cn from 'clsx';
+import { ModalForm } from '@/widgets/auth-widget/model/constants.ts';
 
 export type AuthModalFeatureProps = {
+  onSelect: (type: ModalForm) => void;
+  onClose?: () => void;
   visible?: boolean;
-  onSelect: (type: string) => void;
 };
+
 export const AuthModalFeature: FC<AuthModalFeatureProps> = ({
   onSelect,
-  visible = false,
+  onClose,
+  visible,
 }) => {
   const showRegisterForm = () => {
-    onSelect('showRegisterForm');
+    onSelect(ModalForm.SIGNUP);
   };
 
   const showLoginForm = () => {
-    onSelect('showLoginForm');
+    onSelect(ModalForm.SIGNIN);
   };
 
   return (
-    <Modal visible={visible}>
+    <Modal visible={visible} onClose={onClose} backgroundClickHandler={onClose}>
       <Card className={cn(styles['auth-modal-feature'], styles['p-40'])}>
         <TextButton
           handleClick={showRegisterForm}

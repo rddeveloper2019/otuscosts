@@ -1,0 +1,1 @@
+export { ThemeLangWidget } from './ui';
