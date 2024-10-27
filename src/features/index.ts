@@ -7,3 +7,4 @@ export { EditProfileModalFormFeature } from './edit-profile-feature';
 export { AuthModalFeature } from './auth-modal-feature';
 export { SigninModalFormFeature } from './signin-modal-feature';
 export { SignupModalFormFeature } from './signup-modal-feature';
+export { OperationDetailModalFormFeature } from './operation-detail-modal-form-feature';

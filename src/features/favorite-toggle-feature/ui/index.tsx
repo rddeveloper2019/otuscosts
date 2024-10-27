@@ -17,7 +17,7 @@ export const FavoriteToggleFeature: FC<FavoriteToggleFeatureProps> = ({
   onToggleFavorite,
   animated = true,
 }) => {
-  console.log('(**)=>FavoriteToggleFeature id: ', id);
+  console.log('(**)=> id: ', id);
   return (
     <TextButton
       type="button"

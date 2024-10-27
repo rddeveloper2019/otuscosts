@@ -22,10 +22,6 @@ export const OperationsListWidget: FC<OperationsListPropsType> = ({
     return null;
   }
 
-  const onCardClick = (operation: Operation) => {
-    () => onItemSelect?.(operation);
-  };
-
   return (
     <ul className={styles.operations}>
       {operations.map((operation, idx) => (

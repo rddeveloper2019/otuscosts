@@ -1,3 +1,5 @@
+@use 'src/shared/theme/variables';
+
 .operation-detail-widget {
   display: flex;
 }
@@ -7,4 +9,9 @@
   flex-direction: column;
   justify-content: center;
   gap: 8px;
+}
+.add-category-button {
+  font-size: 24px;
+  border: 2px solid variables.$color-success;
+  border-radius: 4px;
 }

@@ -1,5 +1,11 @@
 @use 'src/shared/theme/variables';
 
+.row {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+}
+
 .select {
   font-size: variables.$font-size-m;
   padding: 10px;
@@ -8,4 +14,8 @@
   border-color: variables.$border-color-card-main;
   border-radius: 4px;
   outline: none;
+  width: 100%;
+  .placeholder {
+    color: variables.$color-placeholder;
+  }
 }

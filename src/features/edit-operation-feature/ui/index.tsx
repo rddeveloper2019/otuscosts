@@ -4,18 +4,18 @@ import { TextButton } from '@/shared/components/text-button';
 import styles from './edit-operation-feature.module.scss';
 
 type EditOperationFeatureProps = {
-  onEdit: () => void;
+  onClick: () => void;
 };
 
 export const EditOperationFeature: FC<EditOperationFeatureProps> = ({
-  onEdit,
+  onClick,
 }) => {
   return (
     <TextButton
       type="button"
       state={TextButtonState.PRIMARY}
       className={styles['edit-button']}
-      handleClick={onEdit}
+      handleClick={onClick}
     >
       🖊️
     </TextButton>

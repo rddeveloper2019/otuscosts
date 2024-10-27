@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent, FC, forwardRef, ReactNode } from 'react';
 
 import styles from './select-field.module.scss';
 
@@ -12,27 +12,30 @@ export type CustomSelectProps = {
   value: string;
   name: string;
   options: SelectOption[];
+  addButton?: ReactNode;
 };
 
-export const SelectField: React.FC<CustomSelectProps> = ({
-  options,
-  onChange,
-  value,
-  ...rest
-}) => {
-  return (
-    <select
-      {...rest}
-      value={value}
-      onChange={onChange}
-      className={styles.select}
-    >
-      <option></option>
-      {options.map((option) => (
-        <option key={option.id} value={option.id}>
-          {option.name}
-        </option>
-      ))}
-    </select>
-  );
-};
+export const SelectField: FC<CustomSelectProps> = forwardRef(
+  ({ options, onChange, value, addButton, ...rest }) => {
+    return (
+      <div className={styles.row}>
+        <select
+          {...rest}
+          value={value}
+          onChange={onChange}
+          className={styles.select}
+        >
+          <option value="" disabled className={styles.placeholder}>
+            выберите категорию
+          </option>
+          {options.map((option) => (
+            <option key={option.id} value={option.id}>
+              {option.name}
+            </option>
+          ))}
+        </select>
+        {addButton}
+      </div>
+    );
+  }
+);
