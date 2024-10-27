@@ -1,0 +1,25 @@
+@use 'src/shared/theme/variables';
+
+.profile-entity {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  width: 100%;
+  cursor: pointer;
+
+  .profile-entity-content {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+    flex-grow: 1;
+    gap: 8px;
+    width: 150px;
+  }
+  .date {
+    color: variables.$color-disabled;
+  }
+  .email {
+    color: variables.$background-main-reversed;
+  }
+}

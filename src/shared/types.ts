@@ -57,3 +57,11 @@ export type Cost = BaseOperation & { type: 'Profit' };
 export type Profit = BaseOperation & { type: 'Cost' };
 
 export type Operation = Cost | Profit;
+
+export type Profile = {
+  signUpDate: string;
+  email: string;
+  _id?: string;
+  password?: string;
+  __v?: unknown;
+};
