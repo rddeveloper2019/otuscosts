@@ -1,8 +1,22 @@
 import styles from './dual-range-slider.module.scss';
 import cn from 'clsx';
 import { FC, useEffect, useRef, useState } from 'react';
-import { DualRangeSliderProps } from '@/shared/components/dual-range-slider/types.ts';
 import { useResizeObserver } from '@/shared/hooks/useResizeObserver.ts';
+
+export type DualRangeSliderProps = {
+  width?: number;
+  min?: number;
+  max?: number;
+  className?: string;
+  leftValueText?: string;
+  rightValueText?: string;
+  onSlide: (data: SlideValues) => void;
+};
+
+export type SlideValues = {
+  minValue: number;
+  maxValue: number;
+};
 
 export const DualRangeSlider: FC<DualRangeSliderProps> = ({
   leftValueText,

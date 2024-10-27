@@ -9,3 +9,4 @@ export { SigninModalFormFeature } from './signin-modal-form-feature';
 export { SignupModalFormFeature } from './signup-modal-form-feature';
 export { OperationDetailModalFormFeature } from './operation-detail-modal-form-feature';
 export { AddOperationFeature } from './add-operation-feature';
+export { FilterOperationsFeature } from './filter-operations-feature';

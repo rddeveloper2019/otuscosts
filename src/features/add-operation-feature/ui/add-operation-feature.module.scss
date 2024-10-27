@@ -4,11 +4,9 @@ $safe-area-top: variables.$safe-area-top;
 $top: calc($safe-area-top + 20px);
 
 .add-button {
-  position: absolute;
-  top: $top;
-  right: 50px;
   font-size: 30px;
-
+  width: 60px;
+  height: 60px;
   border: 1px solid variables.$border-color-card-main;
   box-shadow: variables.$main-shadow;
   border-radius: 8px;

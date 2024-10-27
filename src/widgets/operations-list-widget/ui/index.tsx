@@ -31,6 +31,7 @@ export const OperationsListWidget: FC<OperationsListPropsType> = ({
           isLast={operations.length - 1 === idx}
           onIntersect={() => isInfinite && addMore?.()}
           onClick={() => onItemSelect?.(operation)}
+          className={styles.operation}
         >
           <OperationsListItemWidget
             operation={operation}
