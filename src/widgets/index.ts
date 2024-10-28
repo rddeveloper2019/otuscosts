@@ -7,3 +7,4 @@ export { OperationDetailWidget } from './operation-detail-widget';
 export { OperationsListWidget } from './operations-list-widget';
 export { HeaderWidget } from './header-widget';
 export { ProfileWidget } from './profile-widget';
+export { OperationsFilterWidget } from './operation-filters-widget';

@@ -1,9 +1,8 @@
-import { OperationsListWidget } from '@/widgets';
+import { OperationsFilterWidget, OperationsListWidget } from '@/widgets';
 import { operations } from '@/db.ts';
 import { useNavigate } from 'react-router-dom';
 import { Operation } from '@/shared/types.ts';
 import styles from './favorites-page.module.scss';
-import { OperationsFilterWidget } from '@/widgets/operation-filters-widget/ui';
 
 export const FavoritesPage = () => {
   const navigate = useNavigate();

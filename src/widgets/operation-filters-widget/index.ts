@@ -1,1 +1,1 @@
-export { NavigationWidget } from './ui';
+export { OperationsFilterWidget } from './ui';
