@@ -1,15 +1,30 @@
 import { FC } from 'react';
-import { DualRangeSlider } from '@/shared/components/dual-range-slider';
+import {
+  DualRangeSlider,
+  SlideValues,
+} from '@/shared/components/dual-range-slider';
 
 export type FilterOperationsFeatureProps = {
   min: number;
   max: number;
+  onSlide: (data: SlideValues) => void;
+  leftValueText?: string;
+  rightValueText?: string;
 };
 export const FilterOperationsFeature: FC<FilterOperationsFeatureProps> = ({
   min,
   max,
+  onSlide,
+  leftValueText,
+  rightValueText,
 }) => {
-  console.log('(**)=> { min, max }: ', { min, max });
-
-  return <DualRangeSlider onSlide={console.log} />;
+  return (
+    <DualRangeSlider
+      onSlide={onSlide}
+      min={min}
+      max={max}
+      leftValueText={leftValueText}
+      rightValueText={rightValueText}
+    />
+  );
 };

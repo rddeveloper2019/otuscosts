@@ -2,9 +2,10 @@ import { OperationModalFormWidget, OperationsListWidget } from '@/widgets';
 import { operations } from '@/db.ts';
 import { useNavigate } from 'react-router-dom';
 import { Operation } from '@/shared/types.ts';
-import { AddOperationFeature, FilterOperationsFeature } from '@/features';
+import { AddOperationFeature } from '@/features';
 import { useModal } from '@/shared/hooks/useModal.ts';
 import styles from './main-page.module.scss';
+import { OperationsFilterWidget } from '@/widgets/operation-filters-widget/ui';
 
 export const MainPage = () => {
   const navigate = useNavigate();
@@ -20,8 +21,10 @@ export const MainPage = () => {
     <>
       <div className={styles.split}>
         <div className={styles.content}>
-          <FilterOperationsFeature min={100} max={1000} />
-          <FilterOperationsFeature min={100} max={1000} />
+          <OperationsFilterWidget
+            operations={operations}
+            onFilter={(data) => console.log(data)}
+          />
           <OperationsListWidget
             operations={operations}
             onItemSelect={redirectToDetail}
