@@ -17,6 +17,7 @@ import {
 import { InputField } from '@/shared/components/input-field';
 import { SelectField } from '@/shared/components/select-field';
 import { TextareaField } from '@/shared/components/textarea-field';
+import { useTranslation } from 'react-i18next';
 
 export type OperationDetailModalFormFeatureProps = {
   onClose?: () => void;
@@ -133,6 +134,8 @@ export const OperationDetailModalFormFeature: FC<
   onCancel,
   categoryButtons,
 }) => {
+  const { t } = useTranslation();
+
   const createdAt = operation?.createdAt
     ? new Date(operation.createdAt).toLocaleDateString('en-CA')
     : '';
@@ -170,13 +173,15 @@ export const OperationDetailModalFormFeature: FC<
   };
 
   const nameRules: RegisterOptions = {
-    required: 'Невалидное название операции',
+    required: t('modal.form.validations.operationname'),
     minLength: 3,
   };
   const amountRules: RegisterOptions = {
-    required: 'Невалидная сумма операции',
+    required: t('modal.form.validations.operationsum'),
   };
-  const dateRules: RegisterOptions = { required: 'Невалидная дата операции' };
+  const dateRules: RegisterOptions = {
+    required: t('modal.form.validations.operationdate'),
+  };
 
   return (
     <Modal
@@ -192,10 +197,11 @@ export const OperationDetailModalFormFeature: FC<
             rules={nameRules}
             render={({ field: { ref, ...otherProps } }) => (
               <InputField
-                placeholder="имя операции"
+                placeholder={t('modal.form.placeholders.operationname')}
                 error={
                   errors.name &&
-                  (`${errors.name.message}` || 'Не менее 3-х символов')
+                  (`${errors.name.message}` ||
+                    t('modal.form.validations.minlength'))
                 }
                 {...otherProps}
               />
@@ -208,11 +214,8 @@ export const OperationDetailModalFormFeature: FC<
             render={({ field: { ref, ...otherProps } }) => (
               <InputField
                 type="number"
-                placeholder="сумма операции"
-                error={
-                  errors.amount &&
-                  (`${errors.amount.message}` || 'Не менее 3-х символов')
-                }
+                placeholder={t('modal.form.placeholders.operationsum')}
+                error={errors.amount && `${errors.amount.message}`}
                 {...otherProps}
               />
             )}
@@ -236,18 +239,10 @@ export const OperationDetailModalFormFeature: FC<
             render={({ field: { ref, ...otherProps } }) => (
               <InputField
                 type="date"
-                placeholder="дата операции"
+                placeholder={t('modal.form.placeholders.operationdate')}
                 error={errors.date && `${errors.date.message}`}
                 {...otherProps}
               />
-            )}
-          />
-
-          <Controller
-            name="photo"
-            control={control as unknown as Control<FieldValues>}
-            render={({ field: { ref, ...otherProps } }) => (
-              <InputField placeholder="изображение" {...otherProps} />
             )}
           />
           <Controller
@@ -255,7 +250,7 @@ export const OperationDetailModalFormFeature: FC<
             control={control as unknown as Control<FieldValues>}
             render={({ field: { ref, ...otherProps } }) => (
               <TextareaField
-                placeholder="дополнительная информация"
+                placeholder={t('modal.form.placeholders.additionalinfo')}
                 {...otherProps}
               />
             )}
@@ -267,11 +262,11 @@ export const OperationDetailModalFormFeature: FC<
               type="button"
               state={TextButtonState.SECONDARY}
             >
-              Cancel
+              {t('modal.cancel')}
             </TextButton>
 
             <TextButton type="submit" state={TextButtonState.PRIMARY}>
-              OK
+              {t('modal.save')}
             </TextButton>
           </div>
         </form>

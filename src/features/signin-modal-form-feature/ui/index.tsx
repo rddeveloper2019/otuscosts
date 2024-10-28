@@ -14,6 +14,7 @@ import {
   useForm,
 } from 'react-hook-form';
 import { InputField } from '@/shared/components/input-field';
+import { useTranslation } from 'react-i18next';
 
 export type SigninFormType = {
   username: string;
@@ -31,7 +32,7 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
   onClose,
   visible = false,
 }) => {
-  // const { login } = useAuthentication();
+  const { t } = useTranslation();
 
   const { login } = { login: () => {} };
 
@@ -64,18 +65,18 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
   };
 
   const usernameRules: RegisterOptions = {
-    required: 'Невалидное имя пользователя',
+    required: t('modal.form.validations.login'),
     minLength: 3,
   };
   const passwordRules: RegisterOptions = {
-    required: 'Невалидный пароль',
+    required: t('modal.form.validations.password'),
     minLength: 3,
   };
 
   return (
     <Modal visible={visible} backgroundClickHandler={handleCancel}>
       <Card className={styles['login-form']}>
-        <h1 className={cn(styles.title)}>Вход</h1>
+        <h1 className={cn(styles.title)}>{t('modal.headers.signin')}</h1>
         <form className={cn(styles.form)} onSubmit={handleSubmit(onConfirm)}>
           <Controller
             name="username"
@@ -83,10 +84,11 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
             rules={usernameRules}
             render={({ field }) => (
               <InputField
-                placeholder="введите логин"
+                placeholder={t('modal.form.placeholders.login')}
                 error={
                   errors.username &&
-                  (`${errors.username.message}` || 'Не менее 3-х символов')
+                  (`${errors.username.message}` ||
+                    t('modal.form.validations.minlength'))
                 }
                 {...field}
               />
@@ -99,10 +101,11 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
             render={({ field }) => (
               <InputField
                 type="password"
-                placeholder="введите пароль"
+                placeholder={t('modal.form.placeholders.password')}
                 error={
                   errors.password &&
-                  (`${errors.password.message}` || 'Не менее 3-х символов')
+                  (`${errors.password.message}` ||
+                    t('modal.form.validations.minlength'))
                 }
                 {...field}
               />
@@ -111,7 +114,7 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
 
           <div className={cn(styles.buttons)}>
             <TextButton type="submit" state={TextButtonState.PRIMARY}>
-              Войти
+              {t('modal.signin')}
             </TextButton>
           </div>
         </form>

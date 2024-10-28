@@ -5,6 +5,7 @@
   background-color: transparent;
   border: none;
   padding: 10px 15px;
+  white-space: nowrap;
   &.animated:active {
     transform: translateY(-2px);
   }

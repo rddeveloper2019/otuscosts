@@ -11,20 +11,23 @@ import {
   OperationDetailPage,
   ProfilePage,
 } from '@/pages';
+import { AppConfigProvider } from '@/app/providers/app-config-provider.tsx';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Layout header={<HeaderWidget />}>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/operation/:id" element={<OperationDetailPage />} />{' '}
-          <Route path="*" element={<NoFoundPage />} />
-        </Routes>
-      </Layout>
-    </BrowserRouter>
+    <AppConfigProvider>
+      <BrowserRouter>
+        <Layout header={<HeaderWidget />}>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/operation/:id" element={<OperationDetailPage />} />
+            <Route path="*" element={<NoFoundPage />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </AppConfigProvider>
   );
 };
 

@@ -1,0 +1,9 @@
+@use '@/shared/theme/variables';
+
+body {
+  background-color: variables.$background-main;
+  font-size: variables.$font-size-main;
+}
+body::-webkit-scrollbar {
+  display: none;
+}

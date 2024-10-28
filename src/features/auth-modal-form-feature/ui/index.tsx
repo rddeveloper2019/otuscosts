@@ -6,6 +6,7 @@ import { TextButton } from '@/shared/components/text-button';
 import { TextButtonState } from '@/shared/components/text-button/types.ts';
 import cn from 'clsx';
 import { ModalForm } from '@/widgets/auth-widget/model/constants.ts';
+import { useTranslation } from 'react-i18next';
 
 export type AuthModalFeatureProps = {
   onSelect: (type: ModalForm) => void;
@@ -18,6 +19,7 @@ export const AuthModalFeature: FC<AuthModalFeatureProps> = ({
   onClose,
   visible,
 }) => {
+  const { t } = useTranslation();
   const showRegisterForm = () => {
     onSelect(ModalForm.SIGNUP);
   };
@@ -34,7 +36,7 @@ export const AuthModalFeature: FC<AuthModalFeatureProps> = ({
           type="button"
           state={TextButtonState.PRIMARY}
         >
-          🔑 Регистрация
+          🔑 {t('modal.signup')}
         </TextButton>
 
         <TextButton
@@ -42,7 +44,7 @@ export const AuthModalFeature: FC<AuthModalFeatureProps> = ({
           state={TextButtonState.SECONDARY}
           handleClick={showLoginForm}
         >
-          🔓 Вход
+          🔓 {t('modal.signin')}
         </TextButton>
       </Card>
     </Modal>

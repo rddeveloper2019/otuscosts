@@ -15,6 +15,7 @@ import {
 } from 'react-hook-form';
 import { InputField } from '@/shared/components/input-field';
 import { Category } from '@/shared/types.ts';
+import { useTranslation } from 'react-i18next';
 
 export type CategoryFormType = {
   photo: string;
@@ -36,6 +37,8 @@ export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
   onCategoryModalClose,
   onDismiss,
 }) => {
+  const { t } = useTranslation();
+
   const signUpDate = category?.createdAt
     ? new Date(category.createdAt).toLocaleDateString('en-CA')
     : '';
@@ -66,12 +69,12 @@ export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
   };
 
   const nameRules: RegisterOptions = {
-    required: 'Невалидное имя категории',
+    required: t('modal.form.validations.categoryname'),
     minLength: 3,
   };
 
   const photoRules: RegisterOptions = {
-    required: 'Невалидный URL',
+    required: t('modal.form.validations.photourl'),
     validate: (value) => {
       const httpRegex =
         /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
@@ -94,10 +97,11 @@ export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
               control={control as unknown as Control<FieldValues>}
               render={({ field }) => (
                 <InputField
-                  placeholder="Наименование категории"
+                  placeholder={t('modal.form.placeholders.categoryname')}
                   error={
                     errors.name &&
-                    (`${errors.name.message}` || 'Не менее 3-х символов')
+                    (`${errors.name.message}` ||
+                      t('modal.form.validations.minlength'))
                   }
                   {...field}
                 />
@@ -109,10 +113,11 @@ export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
               control={control as unknown as Control<FieldValues>}
               render={({ field }) => (
                 <InputField
-                  placeholder="Ссылка на изображение"
+                  placeholder={t('modal.form.placeholders.photourl')}
                   error={
                     errors.photo &&
-                    (`${errors.photo.message}` || 'Не менее 3-х символов')
+                    (`${errors.photo.message}` ||
+                      t('modal.form.validations.minlength'))
                   }
                   {...field}
                 />
@@ -124,10 +129,10 @@ export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
                 state={TextButtonState.SECONDARY}
                 handleClick={onCategoryModalClose}
               >
-                CANCEL
+                {t('modal.cancel')}
               </TextButton>
               <TextButton type="submit" state={TextButtonState.PRIMARY}>
-                SAVE
+                {t('modal.save')}
               </TextButton>
             </div>
           </form>

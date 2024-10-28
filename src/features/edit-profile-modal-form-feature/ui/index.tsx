@@ -16,6 +16,7 @@ import {
 import { InputField } from '@/shared/components/input-field';
 import { Profile } from '@/shared/types.ts';
 import { useModal } from '@/shared/hooks/useModal.ts';
+import { useTranslation } from 'react-i18next';
 
 export type ProfileFormType = {
   email: string;
@@ -30,6 +31,8 @@ type EditProfileModalFormFeatureProps = {
 export const EditProfileModalFormFeature: FC<
   EditProfileModalFormFeatureProps
 > = ({ profile, onEdit }) => {
+  const { t } = useTranslation();
+
   const { isModalOpen, openModal, closeModal } = useModal();
 
   const signUpDate = profile?.signUpDate
@@ -60,7 +63,7 @@ export const EditProfileModalFormFeature: FC<
   };
 
   const emailRules: RegisterOptions = {
-    required: 'Невалидный email',
+    required: t('modal.form.validations.email'),
     minLength: 3,
   };
 
@@ -87,10 +90,11 @@ export const EditProfileModalFormFeature: FC<
               control={control as unknown as Control<FieldValues>}
               render={({ field }) => (
                 <InputField
-                  placeholder="Ваш логин "
+                  placeholder={t('modal.form.placeholders.username')}
                   error={
                     errors.email &&
-                    (`${errors.email.message}` || 'Не менее 3-х символов')
+                    (`${errors.email.message}` ||
+                      t('modal.form.validations.minlength'))
                   }
                   {...field}
                 />
@@ -102,7 +106,7 @@ export const EditProfileModalFormFeature: FC<
               render={({ field: { ref, ...otherProps } }) => (
                 <InputField
                   type="date"
-                  placeholder="Дата регистрации"
+                  placeholder={t('modal.form.placeholders.registerdate')}
                   error={errors.date && `${errors.date.message}`}
                   {...otherProps}
                 />
@@ -110,7 +114,7 @@ export const EditProfileModalFormFeature: FC<
             />
             <div className={cn(styles.buttons)}>
               <TextButton type="submit" state={TextButtonState.PRIMARY}>
-                SAVE
+                {t('modal.save')}
               </TextButton>
             </div>
           </form>

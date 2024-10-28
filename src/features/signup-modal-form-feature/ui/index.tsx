@@ -14,6 +14,7 @@ import {
   useForm,
 } from 'react-hook-form';
 import { InputField } from '@/shared/components/input-field';
+import { useTranslation } from 'react-i18next';
 
 export type RegistrationFormType = {
   username: string;
@@ -32,6 +33,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
   onClose,
   visible = false,
 }) => {
+  const { t } = useTranslation();
   const { register } = { register: () => {} };
 
   const {
@@ -70,24 +72,24 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
   };
 
   const usernameRules: RegisterOptions = {
-    required: 'Невалидное имя пользователя',
+    required: t('modal.form.validations.login'),
     minLength: 3,
   };
 
   const passwordRules: RegisterOptions = {
-    required: 'Невалидный пароль',
+    required: t('modal.form.validations.password'),
     minLength: 3,
   };
 
   const confirmPasswordRules: RegisterOptions = {
-    required: 'Пароли не совпадают',
+    required: t('modal.form.validations.mismatch'),
     validate: (value) => value === watch('password'),
   };
 
   return (
     <Modal visible={visible} backgroundClickHandler={handleCancel}>
       <Card className={styles['signup-form']}>
-        <h1 className={cn(styles.title)}>Регистрация</h1>
+        <h1 className={cn(styles.title)}>{t('modal.headers.signup')}</h1>
         <form className={cn(styles.form)}>
           <Controller
             name="username"
@@ -95,10 +97,11 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
             rules={usernameRules}
             render={({ field }) => (
               <InputField
-                placeholder="введите логин"
+                placeholder={t('modal.form.placeholders.login')}
                 error={
                   errors.username &&
-                  (`${errors.username.message}` || 'Не менее 3-х символов')
+                  (`${errors.username.message}` ||
+                    t('modal.form.validations.minlength'))
                 }
                 {...field}
               />
@@ -111,10 +114,11 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
             render={({ field }) => (
               <InputField
                 type="password"
-                placeholder="введите пароль"
+                placeholder={t('modal.form.placeholders.password')}
                 error={
                   errors.password &&
-                  (`${errors.password.message}` || 'Не менее 3-х символов')
+                  (`${errors.password.message}` ||
+                    t('modal.form.validations.minlength'))
                 }
                 {...field}
               />
@@ -128,10 +132,11 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
             render={({ field }) => (
               <InputField
                 type="password"
-                placeholder="повторите пароль"
+                placeholder={t('modal.form.placeholders.repeatpassword')}
                 error={
                   errors.confirmPassword &&
-                  (`${errors.confirmPassword.message}` || 'пароли не совпадают')
+                  (`${errors.confirmPassword.message}` ||
+                    t('modal.form.validations.mismatch'))
                 }
                 {...field}
               />
@@ -143,7 +148,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
               state={TextButtonState.PRIMARY}
               handleClick={handleSubmit(onConfirm)}
             >
-              Зарегистрировать
+              {t('modal.signup')}
             </TextButton>
           </div>
         </form>

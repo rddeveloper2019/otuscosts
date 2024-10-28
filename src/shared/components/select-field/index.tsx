@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, forwardRef, ReactNode } from 'react';
 
 import styles from './select-field.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export type SelectOption = {
   id: string;
@@ -17,6 +18,8 @@ export type CustomSelectProps = {
 
 export const SelectField: FC<CustomSelectProps> = forwardRef(
   ({ options, onChange, value, categoryButtons, ...rest }) => {
+    const { t } = useTranslation();
+
     return (
       <div className={styles.row}>
         <select
@@ -26,7 +29,7 @@ export const SelectField: FC<CustomSelectProps> = forwardRef(
           className={styles.select}
         >
           <option value="" disabled className={styles.placeholder}>
-            выберите категорию
+            {t('modal.form.placeholders.selectcategory')}
           </option>
           {options.map((option) => (
             <option key={option.id} value={option.id}>
