@@ -15,6 +15,7 @@ import {
 } from 'react-hook-form';
 import { InputField } from '@/shared/components/input-field';
 import { useTranslation } from 'react-i18next';
+import { useSignupMutation } from '@/features/signup-modal-form-feature/model';
 
 export type RegistrationFormType = {
   username: string;
@@ -35,6 +36,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
 }) => {
   const { t } = useTranslation();
   const { register } = { register: () => {} };
+  const { handleSubmit: signup, error } = useSignupMutation();
 
   const {
     control,
@@ -63,13 +65,15 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
     password,
   }) => {
     register();
-    console.log('(**)=> onConfirm: ', {
+    signup({
       username,
       password,
     });
     onAction?.();
     onClose?.();
   };
+
+  console.log('(**)=> error: ', error);
 
   const usernameRules: RegisterOptions = {
     required: t('modal.form.validations.login'),

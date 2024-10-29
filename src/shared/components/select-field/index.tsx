@@ -17,7 +17,7 @@ export type CustomSelectProps = {
 };
 
 export const SelectField: FC<CustomSelectProps> = forwardRef(
-  ({ options, onChange, value, categoryButtons, ...rest }) => {
+  ({ options, onChange, value, categoryButtons, ...rest }, _) => {
     const { t } = useTranslation();
 
     return (
