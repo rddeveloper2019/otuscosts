@@ -19,7 +19,10 @@ export const OperationsListItemWidget: FC<OperationsListItemWidgetProps> = ({
 
   return (
     <div className={styles['operations-list-item-widget']}>
-      <OperationEntity operation={shortData} />
+      <OperationEntity
+        operation={shortData}
+        className={styles['operations-entity-short']}
+      />
       <FavoriteToggleFeature
         isFavorite={isFavorite}
         id={operation.id}

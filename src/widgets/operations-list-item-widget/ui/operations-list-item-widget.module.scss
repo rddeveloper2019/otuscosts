@@ -1,4 +1,8 @@
 .operations-list-item-widget {
   display: flex;
   width: 100%;
+
+  .operations-entity-short {
+    cursor: pointer;
+  }
 }
