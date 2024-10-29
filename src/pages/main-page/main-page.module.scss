@@ -13,4 +13,6 @@
 }
 .aside {
   max-width: 60px;
+  display: flex;
+  flex-direction: column-reverse;
 }
