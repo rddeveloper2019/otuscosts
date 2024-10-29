@@ -1,5 +1,5 @@
-import { Lang } from '@/shared/lang/types.ts';
-import { Theme } from '@/shared/theme/types.ts';
+import { Lang } from '@/app/lang/types.ts';
+import { Theme } from '@/app/theme/types.ts';
 
 type LocalAppConfig = {
   lang: Lang;

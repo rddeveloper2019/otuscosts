@@ -1,6 +1,6 @@
 import './index.scss';
-import '@/shared/theme/fonts.scss';
-import '@/shared/i18n.ts';
+import '@/app/theme/fonts.scss';
+import '@/app/i18n.ts';
 import { Layout } from '@/shared/components/layout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HeaderWidget } from '@/widgets';

@@ -1,4 +1,4 @@
-@use '@/shared/theme/variables';
+@use '@/app/theme/variables';
 $safe-area: variables.$safe-area-top;
 .operations {
   max-height: calc(100vh - $safe-area - 200px);

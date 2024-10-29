@@ -1,7 +1,7 @@
 import { createContext, PropsWithChildren, useEffect, useState } from 'react';
-import { Lang } from '@/shared/lang/types.ts';
-import { Theme } from '@/shared/theme/types.ts';
-import { applyNewTheme } from '@/shared/theme/appluTheme.ts';
+import { Lang } from '@/app/lang/types.ts';
+import { Theme } from '@/app/theme/types.ts';
+import { applyNewTheme } from '@/app/theme/applyTheme.ts';
 import { useTranslation } from 'react-i18next';
 import { LocalAppConfigService } from '@/shared/services/AppConfigService.ts';
 

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Lang } from '@/shared/lang/types.ts';
+import { Lang } from '@/app/lang/types.ts';
 import { TextButtonState } from '@/shared/components/text-button/types.ts';
 import { TextButton } from '@/shared/components/text-button';
 import { AppConfigContext } from '@/app/providers/app-config-provider.tsx';

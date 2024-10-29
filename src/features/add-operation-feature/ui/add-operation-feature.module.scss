@@ -1,4 +1,4 @@
-@use '@/shared/theme/variables';
+@use '@/app/theme/variables';
 
 $safe-area-top: variables.$safe-area-top;
 $top: calc($safe-area-top + 20px);

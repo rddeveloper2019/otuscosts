@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Theme } from '@/shared/theme/types.ts';
+import { Theme } from '@/app/theme/types.ts';
 import { TextButtonState } from '@/shared/components/text-button/types.ts';
 import styles from './theme-feature.module.scss';
 import { TextButton } from '@/shared/components/text-button';

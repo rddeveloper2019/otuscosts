@@ -1,5 +1,5 @@
-import { Theme } from '@/shared/theme/types.ts';
-import { themes } from '@/shared/theme/themes.ts';
+import { Theme } from '@/app/theme/types.ts';
+import { themes } from '@/app/theme/themes.ts';
 
 const root = document.querySelector(':root') as HTMLElement;
 
