@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { useSignupMutation } from '@/features/signup-modal-form-feature/model';
 
 export type RegistrationFormType = {
-  username: string;
+  email: string;
   password: string;
   confirmPassword: string;
 };
@@ -35,7 +35,6 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
   visible = false,
 }) => {
   const { t } = useTranslation();
-  const { register } = { register: () => {} };
   const { handleSubmit: signup, error } = useSignupMutation();
 
   const {
@@ -47,7 +46,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
     watch,
   } = useForm<RegistrationFormType>({
     defaultValues: {
-      username: '',
+      email: '',
       password: '',
       confirmPassword: '',
     },
@@ -61,12 +60,11 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
   };
 
   const onConfirm: SubmitHandler<RegistrationFormType> = ({
-    username,
+    email,
     password,
   }) => {
-    register();
     signup({
-      username,
+      email,
       password,
     });
     onAction?.();
@@ -75,7 +73,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
 
   console.log('(**)=> error: ', error);
 
-  const usernameRules: RegisterOptions = {
+  const emailRules: RegisterOptions = {
     required: t('modal.form.validations.login'),
     minLength: 3,
   };
@@ -96,15 +94,15 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
         <h1 className={cn(styles.title)}>{t('modal.headers.signup')}</h1>
         <form className={cn(styles.form)}>
           <Controller
-            name="username"
+            name="email"
             control={control as unknown as Control<FieldValues>}
-            rules={usernameRules}
+            rules={emailRules}
             render={({ field }) => (
               <InputField
                 placeholder={t('modal.form.placeholders.login')}
                 error={
-                  errors.username &&
-                  (`${errors.username.message}` ||
+                  errors.email &&
+                  (`${errors.email.message}` ||
                     t('modal.form.validations.minlength'))
                 }
                 {...field}
