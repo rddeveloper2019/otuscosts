@@ -15,14 +15,20 @@ export const FavoritesPage = () => {
     <>
       <div className={styles.split}>
         <div className={styles.content}>
-          <OperationsFilterWidget
-            operations={operations}
-            onFilter={(data) => console.log(data)}
-          />
-          <OperationsListWidget
-            operations={operations.filter((operation) => operation.isFavorite)}
-            onItemSelect={redirectToDetail}
-          />
+          {operations.length && (
+            <>
+              <OperationsFilterWidget
+                operations={operations}
+                onFilter={(data) => console.log(data)}
+              />
+              <OperationsListWidget
+                operations={operations.filter(
+                  (operation) => operation.isFavorite
+                )}
+                onItemSelect={redirectToDetail}
+              />
+            </>
+          )}
         </div>
       </div>
     </>

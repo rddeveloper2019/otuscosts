@@ -24,14 +24,18 @@ export const MainPage = () => {
     <>
       <div className={styles.split}>
         <div className={styles.content}>
-          <OperationsFilterWidget
-            operations={operations}
-            onFilter={(data) => console.log(data)}
-          />
-          <OperationsListWidget
-            operations={operations}
-            onItemSelect={redirectToDetail}
-          />
+          {operations.length && (
+            <>
+              <OperationsFilterWidget
+                operations={operations}
+                onFilter={(data) => console.log(data)}
+              />
+              <OperationsListWidget
+                operations={operations}
+                onItemSelect={redirectToDetail}
+              />
+            </>
+          )}
         </div>
         <div className={styles.aside}>
           <AddOperationFeature onClick={operationFormModal.openModal} />
