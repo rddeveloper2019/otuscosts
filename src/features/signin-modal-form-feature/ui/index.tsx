@@ -15,9 +15,10 @@ import {
 } from 'react-hook-form';
 import { InputField } from '@/shared/components/input-field';
 import { useTranslation } from 'react-i18next';
+import { useSigninMutation } from '@/features/signin-modal-form-feature/model';
 
 export type SigninFormType = {
-  username: string;
+  email: string;
   password: string;
 };
 
@@ -34,7 +35,7 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const { login } = { login: () => {} };
+  const { handleSubmit: signin } = useSigninMutation();
 
   const {
     control,
@@ -44,7 +45,7 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
     formState: { errors },
   } = useForm<SigninFormType>({
     defaultValues: {
-      username: '',
+      email: '',
       password: '',
     },
   });
@@ -56,15 +57,13 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
     onAction?.();
   };
 
-  const onConfirm: SubmitHandler<SigninFormType> = ({ username, password }) => {
-    // login({ email: username, password });
-    login();
-    console.log('(**)=> onConfirm: ', { username, password });
+  const onConfirm: SubmitHandler<SigninFormType> = ({ email, password }) => {
+    signin({ email, password });
     onAction?.();
     onClose?.();
   };
 
-  const usernameRules: RegisterOptions = {
+  const emailRules: RegisterOptions = {
     required: t('modal.form.validations.login'),
     minLength: 3,
   };
@@ -79,15 +78,15 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
         <h1 className={cn(styles.title)}>{t('modal.headers.signin')}</h1>
         <form className={cn(styles.form)} onSubmit={handleSubmit(onConfirm)}>
           <Controller
-            name="username"
+            name="email"
             control={control as unknown as Control<FieldValues>}
-            rules={usernameRules}
+            rules={emailRules}
             render={({ field }) => (
               <InputField
                 placeholder={t('modal.form.placeholders.login')}
                 error={
-                  errors.username &&
-                  (`${errors.username.message}` ||
+                  errors.email &&
+                  (`${errors.email.message}` ||
                     t('modal.form.validations.minlength'))
                 }
                 {...field}

@@ -35,7 +35,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
   visible = false,
 }) => {
   const { t } = useTranslation();
-  const { handleSubmit: signup, error } = useSignupMutation();
+  const { handleSubmit: signup } = useSignupMutation();
 
   const {
     control,
@@ -70,8 +70,6 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
     onAction?.();
     onClose?.();
   };
-
-  console.log('(**)=> error: ', error);
 
   const emailRules: RegisterOptions = {
     required: t('modal.form.validations.login'),
