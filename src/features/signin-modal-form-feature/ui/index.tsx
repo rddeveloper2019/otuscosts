@@ -35,7 +35,7 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const { handleSubmit: signin } = useSigninMutation();
+  const { handleSubmit: signin, loader } = useSigninMutation();
 
   const {
     control,
@@ -73,51 +73,54 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
   };
 
   return (
-    <Modal visible={visible} backgroundClickHandler={handleCancel}>
-      <Card className={styles['login-form']}>
-        <h1 className={cn(styles.title)}>{t('modal.headers.signin')}</h1>
-        <form className={cn(styles.form)} onSubmit={handleSubmit(onConfirm)}>
-          <Controller
-            name="email"
-            control={control as unknown as Control<FieldValues>}
-            rules={emailRules}
-            render={({ field }) => (
-              <InputField
-                placeholder={t('modal.form.placeholders.login')}
-                error={
-                  errors.email &&
-                  (`${errors.email.message}` ||
-                    t('modal.form.validations.minlength'))
-                }
-                {...field}
-              />
-            )}
-          />
-          <Controller
-            name="password"
-            control={control as unknown as Control<FieldValues>}
-            rules={passwordRules}
-            render={({ field }) => (
-              <InputField
-                type="password"
-                placeholder={t('modal.form.placeholders.password')}
-                error={
-                  errors.password &&
-                  (`${errors.password.message}` ||
-                    t('modal.form.validations.minlength'))
-                }
-                {...field}
-              />
-            )}
-          />
+    <>
+      {loader()}
+      <Modal visible={visible} backgroundClickHandler={handleCancel}>
+        <Card className={styles['login-form']}>
+          <h1 className={cn(styles.title)}>{t('modal.headers.signin')}</h1>
+          <form className={cn(styles.form)} onSubmit={handleSubmit(onConfirm)}>
+            <Controller
+              name="email"
+              control={control as unknown as Control<FieldValues>}
+              rules={emailRules}
+              render={({ field }) => (
+                <InputField
+                  placeholder={t('modal.form.placeholders.login')}
+                  error={
+                    errors.email &&
+                    (`${errors.email.message}` ||
+                      t('modal.form.validations.minlength'))
+                  }
+                  {...field}
+                />
+              )}
+            />
+            <Controller
+              name="password"
+              control={control as unknown as Control<FieldValues>}
+              rules={passwordRules}
+              render={({ field }) => (
+                <InputField
+                  type="password"
+                  placeholder={t('modal.form.placeholders.password')}
+                  error={
+                    errors.password &&
+                    (`${errors.password.message}` ||
+                      t('modal.form.validations.minlength'))
+                  }
+                  {...field}
+                />
+              )}
+            />
 
-          <div className={cn(styles.buttons)}>
-            <TextButton type="submit" state={TextButtonState.PRIMARY}>
-              {t('modal.signin')}
-            </TextButton>
-          </div>
-        </form>
-      </Card>
-    </Modal>
+            <div className={cn(styles.buttons)}>
+              <TextButton type="submit" state={TextButtonState.PRIMARY}>
+                {t('modal.signin')}
+              </TextButton>
+            </div>
+          </form>
+        </Card>
+      </Modal>
+    </>
   );
 };

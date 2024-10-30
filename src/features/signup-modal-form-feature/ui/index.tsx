@@ -35,7 +35,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
   visible = false,
 }) => {
   const { t } = useTranslation();
-  const { handleSubmit: signup } = useSignupMutation();
+  const { handleSubmit: signup, loader } = useSignupMutation();
 
   const {
     control,
@@ -87,72 +87,75 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
   };
 
   return (
-    <Modal visible={visible} backgroundClickHandler={handleCancel}>
-      <Card className={styles['signup-form']}>
-        <h1 className={cn(styles.title)}>{t('modal.headers.signup')}</h1>
-        <form className={cn(styles.form)}>
-          <Controller
-            name="email"
-            control={control as unknown as Control<FieldValues>}
-            rules={emailRules}
-            render={({ field }) => (
-              <InputField
-                placeholder={t('modal.form.placeholders.login')}
-                error={
-                  errors.email &&
-                  (`${errors.email.message}` ||
-                    t('modal.form.validations.minlength'))
-                }
-                {...field}
-              />
-            )}
-          />
-          <Controller
-            name="password"
-            control={control as unknown as Control<FieldValues>}
-            rules={passwordRules}
-            render={({ field }) => (
-              <InputField
-                type="password"
-                placeholder={t('modal.form.placeholders.password')}
-                error={
-                  errors.password &&
-                  (`${errors.password.message}` ||
-                    t('modal.form.validations.minlength'))
-                }
-                {...field}
-              />
-            )}
-          />
+    <>
+      {loader()}
+      <Modal visible={visible} backgroundClickHandler={handleCancel}>
+        <Card className={styles['signup-form']}>
+          <h1 className={cn(styles.title)}>{t('modal.headers.signup')}</h1>
+          <form className={cn(styles.form)}>
+            <Controller
+              name="email"
+              control={control as unknown as Control<FieldValues>}
+              rules={emailRules}
+              render={({ field }) => (
+                <InputField
+                  placeholder={t('modal.form.placeholders.login')}
+                  error={
+                    errors.email &&
+                    (`${errors.email.message}` ||
+                      t('modal.form.validations.minlength'))
+                  }
+                  {...field}
+                />
+              )}
+            />
+            <Controller
+              name="password"
+              control={control as unknown as Control<FieldValues>}
+              rules={passwordRules}
+              render={({ field }) => (
+                <InputField
+                  type="password"
+                  placeholder={t('modal.form.placeholders.password')}
+                  error={
+                    errors.password &&
+                    (`${errors.password.message}` ||
+                      t('modal.form.validations.minlength'))
+                  }
+                  {...field}
+                />
+              )}
+            />
 
-          <Controller
-            name="confirmPassword"
-            control={control as unknown as Control<FieldValues>}
-            rules={confirmPasswordRules}
-            render={({ field }) => (
-              <InputField
-                type="password"
-                placeholder={t('modal.form.placeholders.repeatpassword')}
-                error={
-                  errors.confirmPassword &&
-                  (`${errors.confirmPassword.message}` ||
-                    t('modal.form.validations.mismatch'))
-                }
-                {...field}
-              />
-            )}
-          />
-          <div className={cn(styles.buttons)}>
-            <TextButton
-              type="button"
-              state={TextButtonState.PRIMARY}
-              handleClick={handleSubmit(onConfirm)}
-            >
-              {t('modal.signup')}
-            </TextButton>
-          </div>
-        </form>
-      </Card>
-    </Modal>
+            <Controller
+              name="confirmPassword"
+              control={control as unknown as Control<FieldValues>}
+              rules={confirmPasswordRules}
+              render={({ field }) => (
+                <InputField
+                  type="password"
+                  placeholder={t('modal.form.placeholders.repeatpassword')}
+                  error={
+                    errors.confirmPassword &&
+                    (`${errors.confirmPassword.message}` ||
+                      t('modal.form.validations.mismatch'))
+                  }
+                  {...field}
+                />
+              )}
+            />
+            <div className={cn(styles.buttons)}>
+              <TextButton
+                type="button"
+                state={TextButtonState.PRIMARY}
+                handleClick={handleSubmit(onConfirm)}
+              >
+                {t('modal.signup')}
+              </TextButton>
+            </div>
+          </form>
+        </Card>
+      </Modal>
+    </>
   );
 };

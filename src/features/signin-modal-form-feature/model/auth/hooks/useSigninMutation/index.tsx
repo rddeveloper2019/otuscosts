@@ -1,21 +1,21 @@
-import { SIGNUP_MUTATION } from './gql/signup-mutation.ts';
+import { SIGNIN_MUTATION } from './gql/signin-mutation.ts';
 import { useMutation } from '@apollo/client';
-import { commandId } from '@/app/providers/api/constants/client.ts';
 import {
   AuthResult,
   ServerError,
   ServerErrors,
   SignUpBody,
 } from '@/shared/api-types.ts';
+import { FullscreenLoader } from '@/shared/components/fullscreen-loader';
 
-export const useSignupMutation = () => {
-  const [signup, { data, reset, loading, error }] = useMutation<
-    { profile: { signup: AuthResult } } & ServerErrors
-  >(SIGNUP_MUTATION, {
+export const useSigninMutation = () => {
+  const [signin, { data, reset, loading, error }] = useMutation<
+    { profile: { signin: AuthResult } } & ServerErrors
+  >(SIGNIN_MUTATION, {
     errorPolicy: 'all',
   });
 
-  console.log('(**)=> data: ', { data: data?.profile?.signup });
+  console.log('(**)=> data: ', { data: data?.profile?.signin });
   console.log('(**)=> error: ', {
     message: error?.message,
     code:
@@ -25,17 +25,18 @@ export const useSignupMutation = () => {
   console.log('(**)=> loading: ', loading);
 
   const handleSubmit = ({ email, password }: Omit<SignUpBody, 'commandId'>) => {
-    signup({
+    signin({
       variables: {
         email,
         password,
-        commandId,
       },
     });
   };
 
+  const loader = () => <FullscreenLoader active={loading} />;
+
   return {
-    data: data?.profile?.signup,
+    data: data?.profile?.signin,
     error: {
       message: error?.message,
       code:
@@ -44,5 +45,6 @@ export const useSignupMutation = () => {
     },
     handleSubmit,
     reset,
+    loader,
   };
 };

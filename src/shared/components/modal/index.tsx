@@ -1,26 +1,19 @@
 import {
   FC,
   MouseEventHandler,
-  PropsWithChildren,
   ReactElement,
   useEffect,
   useState,
 } from 'react';
 import styles from './modal.module.scss';
 import cn from 'clsx';
-import { createPortal } from 'react-dom';
-
-const container = document.body;
+import { Portal } from '@/shared/components/portal/portal.tsx';
 
 export type ModalPropSTypes = {
   children: ReactElement;
   visible?: boolean;
   backgroundClickHandler?: () => void;
   onClose?: () => void;
-};
-
-export const Portal = ({ children }: PropsWithChildren) => {
-  return createPortal(children, container);
 };
 
 export const Modal: FC<ModalPropSTypes> = ({
