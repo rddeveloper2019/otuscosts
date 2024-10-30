@@ -1,4 +1,4 @@
-import { SIGNUP_MUTATION } from './gql/mutation-signup.ts';
+import { SIGNUP_MUTATION } from './gql/signup-mutation.ts';
 import { useMutation } from '@apollo/client';
 import { commandId } from '@/app/providers/api/constants/client.ts';
 import {

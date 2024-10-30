@@ -1,14 +1,16 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
+import { TextButton } from '@/shared/components/text-button';
+import { TextButtonState } from '@/shared/components/text-button/types.ts';
 
 // Определяем интерфейсы для пропсов и состояния
 type ErrorBoundaryProps = {
   children: ReactNode;
-  overlay?: ({ element }: { element?: ReactNode }) => ReactNode; // Дочерние компоненты
 };
 
 type ErrorBoundaryState = {
   hasError: boolean;
   error?: Error; // Состояние наличия ошибки
+  errorInfo?: ErrorInfo;
 };
 
 // Создаем класс ErrorBoundary
@@ -16,7 +18,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
 
-    this.state = { hasError: false, error: undefined }; // Инициализируем состояние
+    this.state = { hasError: false, error: undefined, errorInfo: undefined }; // Инициализируем состояние
   }
 
   static getDerivedStateFromError(_: Error) {
@@ -24,20 +26,32 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    this.setState({ hasError: true, error });
+    this.setState({ hasError: true, error, errorInfo });
 
     console.error('Error caught in ErrorBoundary:', error, errorInfo);
   }
 
-  defaultOverlay = () => <h1>Вы что-то сломали.</h1>;
+  defaultOverlay = (error?: Error, errorInfo?: ErrorInfo) => (
+    <div style={{ padding: 20, width: 'fit-content' }}>
+      <h2>Вы что-то сломали: </h2>
+      <div style={{ whiteSpace: 'pre-line' }}>
+        <p>{error?.message}</p>
+        <p>{errorInfo?.componentStack?.trim()}</p>
+        <TextButton
+          state={TextButtonState.SECONDARY}
+          handleClick={() => (window.location.href = '/')}
+          type="button"
+        >
+          🔄 Перезагрузить страницу
+        </TextButton>
+      </div>
+    </div>
+  );
 
   render() {
-    const { error } = this.state;
-
-    const element = <h1>{error?.message || 'Вы что-то сломали'}</h1>;
-
-    if (this.state.hasError) {
-      return this.props?.overlay?.({ element }) || this.defaultOverlay();
+    const { error, errorInfo, hasError } = this.state;
+    if (hasError) {
+      return this.defaultOverlay(error, errorInfo);
     }
 
     return this.props.children;
