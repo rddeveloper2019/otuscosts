@@ -35,7 +35,7 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const { handleSubmit: signin, loader } = useSigninMutation();
+  const { handleSubmit: signin, loader, error } = useSigninMutation();
 
   const {
     control,
@@ -75,6 +75,7 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
   return (
     <>
       {loader()}
+      {error()}
       <Modal visible={visible} backgroundClickHandler={handleCancel}>
         <Card className={styles['login-form']}>
           <h1 className={cn(styles.title)}>{t('modal.headers.signin')}</h1>

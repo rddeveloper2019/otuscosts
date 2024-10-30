@@ -35,7 +35,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
   visible = false,
 }) => {
   const { t } = useTranslation();
-  const { handleSubmit: signup, loader } = useSignupMutation();
+  const { handleSubmit: signup, loader, error } = useSignupMutation();
 
   const {
     control,
@@ -89,6 +89,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
   return (
     <>
       {loader()}
+      {error()}
       <Modal visible={visible} backgroundClickHandler={handleCancel}>
         <Card className={styles['signup-form']}>
           <h1 className={cn(styles.title)}>{t('modal.headers.signup')}</h1>

@@ -1,0 +1,8 @@
+@use '@/app/theme/variables';
+
+.error-message {
+  display: block;
+  color: variables.$color-warn;
+  padding: 40px;
+  text-align: center;
+}
