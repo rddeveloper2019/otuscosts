@@ -13,7 +13,7 @@ export const useForm = <T,>(
     T,
     OperationVariables,
     DefaultContext,
-    ApolloCache<void>
+    ApolloCache<unknown>
   >
 ) => {
   const [proceed, { data, reset, loading, error }] = mutation;
