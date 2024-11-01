@@ -52,7 +52,6 @@ export const EditProfileModalFormFeature: FC<
     formState: { errors },
     clearErrors,
     reset,
-    resetField,
   } = useForm<ProfileFormType>({
     defaultValues: {
       email: profile?.email || '',
