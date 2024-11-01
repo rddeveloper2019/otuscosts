@@ -26,7 +26,8 @@ export class TokenService {
   };
 
   getProfile = () => {
-    return JSON.parse(localStorage.getItem(this.key + 'profile') || '');
+    const raw = localStorage.getItem(this.key + 'profile') ?? '';
+    return raw && JSON.parse(raw);
   };
 
   checkProfile = () => {
@@ -39,7 +40,6 @@ export class TokenService {
   };
 
   getToken = () => {
-    console.log('(**)=> this.key: ', this.key);
     return localStorage.getItem(this.key) || '';
   };
 
