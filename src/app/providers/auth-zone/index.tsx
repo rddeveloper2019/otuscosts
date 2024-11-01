@@ -15,12 +15,13 @@ type AuthZoneProps = {
 const tokenService = TokenService.getInstance(commandId);
 export const AuthZone: FC<AuthZoneProps> = ({ children, className }) => {
   const dispatch = useAppDispatch();
+
   const { t } = useTranslation();
   const { isAuth } = useAuthSelector();
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (!tokenService.checkToken()) {
+    if (!tokenService.checkTokens()) {
       dispatch(signout());
     }
   }, [pathname]);

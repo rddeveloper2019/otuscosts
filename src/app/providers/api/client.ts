@@ -4,10 +4,11 @@ import { TokenService } from '@/shared/services/TokenService.ts';
 
 const tokenService = TokenService.getInstance(commandId);
 
+console.log('(**)=> tokenService.getToken(): ', tokenService.getToken());
 export const client = new ApolloClient({
   uri: URL,
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({ resultCaching: false }),
   headers: {
-    authorization: `Bearer ${tokenService.getToken()}` || '',
+    authorization: `Bearer ${tokenService.getToken()}`,
   },
 });

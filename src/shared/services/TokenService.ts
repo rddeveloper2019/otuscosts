@@ -1,3 +1,5 @@
+import { Profile } from '@/shared/api-types.ts';
+
 export class TokenService {
   private static _instance: TokenService | null = null; // Служебная статическая переменная для хранения экземпляра
   private key: string;
@@ -19,15 +21,32 @@ export class TokenService {
     localStorage.setItem(this.key, token);
   };
 
+  setProfile = (profile: Profile) => {
+    localStorage.setItem(this.key + 'profile', JSON.stringify(profile));
+  };
+
+  getProfile = () => {
+    return JSON.parse(localStorage.getItem(this.key + 'profile') || '');
+  };
+
+  checkProfile = () => {
+    return !!localStorage.getItem(this.key + 'profile');
+  };
+
   clearToken = () => {
     localStorage.removeItem(this.key);
+    localStorage.removeItem(this.key + 'profile');
   };
 
   getToken = () => {
-    return localStorage.getItem(this.key);
+    console.log('(**)=> this.key: ', this.key);
+    return localStorage.getItem(this.key) || '';
   };
 
-  checkToken = () => {
-    return !!localStorage.getItem(this.key);
+  checkTokens = () => {
+    return (
+      !!localStorage.getItem(this.key) &&
+      !!localStorage.getItem(this.key + 'profile')
+    );
   };
 }

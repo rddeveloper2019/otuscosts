@@ -36,6 +36,7 @@ export const ru = {
           selectcategory: 'выберите категорию',
           additionalinfo: 'дополнительная информация',
           username: 'ваш логин',
+          name: 'ваше имя',
           registerdate: 'дата регистрации',
         },
         validations: {
@@ -49,6 +50,7 @@ export const ru = {
           operationname: 'невалидное название операции',
           operationsum: 'невалидная сумма операции',
           operationdate: 'невалидная дата операции',
+          nickname: 'недействительный никнейм',
         },
       },
     },

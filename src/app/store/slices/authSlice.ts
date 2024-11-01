@@ -12,8 +12,8 @@ type AuthStateType = {
 };
 
 const initialState: AuthStateType = {
-  isAuth: tokenService.checkToken(),
-  profile: null,
+  isAuth: tokenService.checkTokens(),
+  profile: tokenService.getProfile(),
 };
 
 const authSlice = createSlice({
@@ -25,8 +25,13 @@ const authSlice = createSlice({
       action: PayloadAction<{ profile: Profile; token: string }>
     ): void => {
       tokenService.setToken(action.payload.token);
+      tokenService.setProfile(action.payload.profile);
       state.isAuth = true;
       state.profile = action.payload.profile;
+    },
+    editProfile: (state, action: PayloadAction<{ profile: Profile }>): void => {
+      state.profile = action.payload.profile;
+      tokenService.setProfile(action.payload.profile);
     },
     signout: (state): void => {
       tokenService.clearToken();
@@ -39,11 +44,12 @@ const authSlice = createSlice({
       { payload }: PayloadAction<{ profile: Profile; token: string }>
     ): void => {
       tokenService.setToken(payload.token);
+      tokenService.setProfile(payload.profile);
       state.isAuth = true;
       state.profile = payload.profile;
     },
   },
 });
 
-export const { signin, signout, signup } = authSlice.actions;
+export const { signin, signout, signup, editProfile } = authSlice.actions;
 export const authReducer = authSlice.reducer;

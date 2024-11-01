@@ -36,6 +36,7 @@ export const en = {
           additionalinfo: 'additional info',
           selectcategory: 'select a category',
           username: 'your username',
+          name: 'your name',
           registerdate: 'registration date',
         },
         validations: {
@@ -49,6 +50,7 @@ export const en = {
           operationname: 'invalid operation name',
           operationsum: 'invalid operation amount',
           operationdate: 'invalid  operation date',
+          nickname: 'is not valid nickname',
         },
       },
     },

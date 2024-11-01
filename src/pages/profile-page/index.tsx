@@ -6,5 +6,5 @@ export const ProfilePage = () => {
   if (!profile) {
     return null;
   }
-  return <ProfileWidget profile={profile} />;
+  return <ProfileWidget />;
 };

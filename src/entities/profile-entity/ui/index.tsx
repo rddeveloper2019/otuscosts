@@ -2,20 +2,19 @@ import styles from './profile-entity.module.scss';
 import cn from 'clsx';
 import { FC } from 'react';
 import photo from '@/public/images/logo.png';
-import { Profile } from '@/shared/api-types.ts';
 import { dateHelper } from '@/shared/utils/dateHelper.ts';
+import { useAuthSelector } from '@/app/store/selectors.ts';
 export type ProfileEntityProps = {
-  profile: Profile;
   onClick?: () => void;
   className?: string;
 };
 
 export const ProfileEntity: FC<ProfileEntityProps> = ({
-  profile,
   onClick,
   className,
 }) => {
-  const { signUpDate, email } = profile;
+  const { profile } = useAuthSelector();
+  const { signUpDate = '', email = '', name = '' } = profile ?? {};
   const operationDate =
     (signUpDate && dateHelper.utcToDateString(signUpDate)) || null;
 
@@ -29,6 +28,11 @@ export const ProfileEntity: FC<ProfileEntityProps> = ({
         <div className={cn(styles.email)}>
           <p>{email}</p>
         </div>
+        {name && (
+          <div className={cn(styles.email)}>
+            <p>{name}</p>
+          </div>
+        )}
         {operationDate && (
           <div className={cn(styles['date'])}>{operationDate}</div>
         )}

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { TextButtonState } from '@/shared/components/text-button/types.ts';
 import { TextButton } from '@/shared/components/text-button';
 import styles from './edit-profile-modal-form-feature.module.scss';
@@ -17,20 +17,27 @@ import { InputField } from '@/shared/components/input-field';
 import { useModal } from '@/shared/hooks/useModal.ts';
 import { useTranslation } from 'react-i18next';
 import { Profile } from '@/shared/api-types.ts';
+import { useEditProfileMutation } from '@/features/edit-profile-modal-form-feature/model';
+import { useAppDispatch } from '@/app/store/store.ts';
+import { editProfile } from '@/app/store/slices/authSlice.ts';
+import { useAuthSelector } from '@/app/store/selectors.ts';
 
 export type ProfileFormType = {
   email: string;
   date: string;
+  name?: string;
 };
 
 type EditProfileModalFormFeatureProps = {
-  profile: Profile;
   onEdit?: () => void;
 };
 
 export const EditProfileModalFormFeature: FC<
   EditProfileModalFormFeatureProps
-> = ({ profile, onEdit }) => {
+> = ({ onEdit }) => {
+  const { profile } = useAuthSelector();
+  const { handleSubmit: save, loader, error, data } = useEditProfileMutation();
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
   const { isModalOpen, openModal, closeModal } = useModal();
@@ -45,20 +52,38 @@ export const EditProfileModalFormFeature: FC<
     formState: { errors },
     clearErrors,
     reset,
+    resetField,
   } = useForm<ProfileFormType>({
     defaultValues: {
       email: profile?.email || '',
       date: signUpDate,
+      name: profile?.name || '',
     },
   });
 
+  useEffect(() => {
+    if (data) {
+      const { profile } = data as unknown as { profile: { update: Profile } };
+
+      console.log('(**)=> data: ', data);
+      profile &&
+        profile?.update &&
+        dispatch(
+          editProfile({
+            profile: profile.update,
+          })
+        );
+    }
+  }, [data]);
   const handleCancel = () => {
     clearErrors();
-    reset();
+    closeModal();
   };
 
-  const onConfirm: SubmitHandler<ProfileFormType> = ({ email, date }) => {
-    console.log('(**)=> save profile: ', { email, date });
+  const onConfirm: SubmitHandler<ProfileFormType> = ({ name }) => {
+    name && save({ name });
+    reset();
+    closeModal();
     onEdit?.();
   };
 
@@ -67,8 +92,19 @@ export const EditProfileModalFormFeature: FC<
     minLength: 3,
   };
 
+  const nameRules: RegisterOptions = {
+    required: t('modal.form.validations.nickname'),
+    validate: (value) => {
+      const nameRegex = /^[_a-zа-я0-9-]{7,}$/i;
+      return nameRegex.test(value) && value !== '';
+    },
+    minLength: 7,
+  };
+
   return (
     <>
+      {loader()}
+      {error()}
       <TextButton
         type="button"
         state={TextButtonState.PRIMARY}
@@ -87,6 +123,7 @@ export const EditProfileModalFormFeature: FC<
             <Controller
               name="email"
               rules={emailRules}
+              disabled
               control={control as unknown as Control<FieldValues>}
               render={({ field }) => (
                 <InputField
@@ -101,7 +138,24 @@ export const EditProfileModalFormFeature: FC<
               )}
             />
             <Controller
+              name="name"
+              rules={nameRules}
+              control={control as unknown as Control<FieldValues>}
+              render={({ field }) => (
+                <InputField
+                  placeholder={t('modal.form.placeholders.name')}
+                  error={
+                    errors.name &&
+                    (`${errors.name.message}` ||
+                      t('modal.form.validations.nickname'))
+                  }
+                  {...field}
+                />
+              )}
+            />
+            <Controller
               name="date"
+              disabled
               control={control as unknown as Control<FieldValues>}
               render={({ field: { ref, ...otherProps } }) => (
                 <InputField
