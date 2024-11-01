@@ -1,10 +1,10 @@
 import styles from './operation-entity.module.scss';
 import cn from 'clsx';
 import { FC } from 'react';
-import { Operation } from '@/shared/types.ts';
+import { Operation } from '@/shared/api-types.ts';
 
 export type OperationEntityProps = {
-  operation: Partial<Operation>;
+  operation: Partial<Operation> & { isFavorite?: boolean; photo?: string };
   onClick?: () => void;
   className?: string;
   photo?: string;

@@ -1,6 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
 import { TextButton } from '@/shared/components/text-button';
 import { TextButtonState } from '@/shared/components/text-button/types.ts';
+import { t } from 'i18next';
 
 // Определяем интерфейсы для пропсов и состояния
 type ErrorBoundaryProps = {
@@ -33,7 +34,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   defaultOverlay = (error?: Error, errorInfo?: ErrorInfo) => (
     <div style={{ padding: 20, width: 'fit-content' }}>
-      <h2>Вы что-то сломали: </h2>
+      <h2>{t('app.error')}</h2>
       <div style={{ whiteSpace: 'pre-line' }}>
         <p>{error?.message}</p>
         <p>{errorInfo?.componentStack?.trim()}</p>
@@ -42,7 +43,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
           handleClick={() => (window.location.href = '/')}
           type="button"
         >
-          🔄 Перезагрузить страницу
+          🔄 {t('app.reload')}
         </TextButton>
       </div>
     </div>

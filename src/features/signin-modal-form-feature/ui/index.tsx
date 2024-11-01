@@ -1,5 +1,5 @@
 import styles from './signin-modal-form-feature.module.scss';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Modal } from '@/shared/components/modal';
 import { Card } from '@/shared/components/card';
 import { TextButton } from '@/shared/components/text-button';
@@ -16,6 +16,9 @@ import {
 import { InputField } from '@/shared/components/input-field';
 import { useTranslation } from 'react-i18next';
 import { useSigninMutation } from '@/features/signin-modal-form-feature/model';
+import { AuthResult } from '@/shared/api-types.ts';
+import { signin } from '@/app/store/slices/authSlice.ts';
+import { useAppDispatch } from '@/app/store/store.ts';
 
 export type SigninFormType = {
   email: string;
@@ -33,9 +36,10 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
   onClose,
   visible = false,
 }) => {
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
-  const { handleSubmit: signin, loader, error } = useSigninMutation();
+  const { handleSubmit: login, loader, error, data } = useSigninMutation();
 
   const {
     control,
@@ -50,6 +54,22 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
     },
   });
 
+  useEffect(() => {
+    if (data) {
+      const { profile } = data as unknown as {
+        profile: { signin: AuthResult };
+      };
+      profile &&
+        profile?.signin &&
+        dispatch(
+          signin({
+            token: profile.signin.token,
+            profile: profile.signin.profile,
+          })
+        );
+    }
+  }, [data]);
+
   const handleCancel = () => {
     clearErrors();
     reset();
@@ -58,7 +78,7 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
   };
 
   const onConfirm: SubmitHandler<SigninFormType> = ({ email, password }) => {
-    signin({ email, password });
+    login({ email, password });
     onAction?.();
     onClose?.();
   };

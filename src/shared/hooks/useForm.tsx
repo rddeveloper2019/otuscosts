@@ -18,7 +18,6 @@ export const useForm = <T,>(
 ) => {
   const [proceed, { data, reset, loading, error }] = mutation;
 
-  console.log('(**)=> data: ', data);
   console.log('(**)=> error: ', {
     message: error?.message,
     code:
@@ -36,6 +35,7 @@ export const useForm = <T,>(
   };
 
   return {
+    data,
     proceedForm,
     loader,
     fullscreenError,

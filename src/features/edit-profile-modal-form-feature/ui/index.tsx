@@ -14,9 +14,9 @@ import {
   useForm,
 } from 'react-hook-form';
 import { InputField } from '@/shared/components/input-field';
-import { Profile } from '@/shared/types.ts';
 import { useModal } from '@/shared/hooks/useModal.ts';
 import { useTranslation } from 'react-i18next';
+import { Profile } from '@/shared/api-types.ts';
 
 export type ProfileFormType = {
   email: string;
@@ -25,7 +25,7 @@ export type ProfileFormType = {
 
 type EditProfileModalFormFeatureProps = {
   profile: Profile;
-  onEdit: () => void;
+  onEdit?: () => void;
 };
 
 export const EditProfileModalFormFeature: FC<

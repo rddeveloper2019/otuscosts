@@ -1,5 +1,5 @@
 import styles from './signup-modal-form-feature.module.scss';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Modal } from '@/shared/components/modal';
 import { Card } from '@/shared/components/card';
 import { TextButton } from '@/shared/components/text-button';
@@ -16,6 +16,9 @@ import {
 import { InputField } from '@/shared/components/input-field';
 import { useTranslation } from 'react-i18next';
 import { useSignupMutation } from '@/features/signup-modal-form-feature/model';
+import { AuthResult } from '@/shared/api-types.ts';
+import { signup } from '@/app/store/slices/authSlice.ts';
+import { useAppDispatch } from '@/app/store/store.ts';
 
 export type RegistrationFormType = {
   email: string;
@@ -34,8 +37,9 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
   onClose,
   visible = false,
 }) => {
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const { handleSubmit: signup, loader, error } = useSignupMutation();
+  const { handleSubmit: register, loader, error, data } = useSignupMutation();
 
   const {
     control,
@@ -52,6 +56,23 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
     },
   });
 
+  useEffect(() => {
+    if (data) {
+      const { profile } = data as unknown as {
+        profile: { signup: AuthResult };
+      };
+
+      profile &&
+        profile?.signup &&
+        dispatch(
+          signup({
+            token: profile.signup.token,
+            profile: profile.signup.profile,
+          })
+        );
+    }
+  }, [data]);
+
   const handleCancel = () => {
     clearErrors();
     reset();
@@ -63,7 +84,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
     email,
     password,
   }) => {
-    signup({
+    register({
       email,
       password,
     });

@@ -2,4 +2,5 @@ export const dateHelper = {
   numberToDateString: (time: number) =>
     new Date(time).toLocaleDateString('ru-RU'),
   dateToNumber: (time: Date) => new Date(time).getTime(),
+  utcToDateString: (utc: string) => new Date(utc).toLocaleDateString('ru-RU'),
 };

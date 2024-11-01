@@ -28,9 +28,7 @@ export const AuthWidget = () => {
   };
 
   const onClick = () => {
-    console.log('(**)=> AuthFeature: ');
     authModalOptions.openModal();
-    console.log('(**)=> authModalOptions: ', authModalOptions);
   };
 
   return (

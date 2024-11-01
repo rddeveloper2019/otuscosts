@@ -3,9 +3,9 @@ import { FC, useEffect, useState } from 'react';
 import { getMinMax, getMinMaxDates } from '@/shared/utils/getMinMax.ts';
 import { SlideValues } from '@/shared/components/dual-range-slider';
 import { dateHelper } from '@/shared/utils/dateHelper.ts';
-import { Operation } from '@/shared/types.ts';
 import { FilterOperationsFeature } from '@/features';
 import cn from 'clsx';
+import { Operation } from '@/shared/api-types.ts';
 
 type OperationsFilterWidgetProps = {
   operations: Operation[];

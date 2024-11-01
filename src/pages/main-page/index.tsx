@@ -5,10 +5,10 @@ import {
 } from '@/widgets';
 import { operations } from '@/db.ts';
 import { useNavigate } from 'react-router-dom';
-import { Operation } from '@/shared/types.ts';
 import { AddOperationFeature } from '@/features';
 import { useModal } from '@/shared/hooks/useModal.ts';
 import styles from './main-page.module.scss';
+import { Operation } from '@/shared/api-types.ts';
 
 export const MainPage = () => {
   const navigate = useNavigate();

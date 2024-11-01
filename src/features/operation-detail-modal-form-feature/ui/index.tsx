@@ -5,7 +5,6 @@ import { Card } from '@/shared/components/card';
 import { TextButton } from '@/shared/components/text-button';
 import { TextButtonState } from '@/shared/components/text-button/types.ts';
 import cn from 'clsx';
-import { Operation } from '@/shared/types.ts';
 import {
   Control,
   Controller,
@@ -18,6 +17,7 @@ import { InputField } from '@/shared/components/input-field';
 import { SelectField } from '@/shared/components/select-field';
 import { TextareaField } from '@/shared/components/textarea-field';
 import { useTranslation } from 'react-i18next';
+import { Operation } from '@/shared/api-types.ts';
 
 export type OperationDetailModalFormFeatureProps = {
   onClose?: () => void;

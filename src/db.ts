@@ -1,4 +1,65 @@
-import { Operation } from '@/shared/types.ts';
+import { Operation } from '@/shared/api-types.ts';
+
+// query GetMany {
+//   operations {
+//     getMany {
+//       sorting {
+//         type
+//             field
+//       }
+//       data {
+//       ... on Profit {
+//           id
+//           name
+//           desc
+//           date
+//           createdAt
+//           updatedAt
+//           amount
+//           category {
+//             id
+//             name
+//             photo
+//             createdAt
+//             updatedAt
+//             commandId
+//           }
+//           type
+//               commandId
+//         }
+//       ... on Cost {
+//           id
+//           name
+//           desc
+//           date
+//           createdAt
+//           updatedAt
+//           amount
+//           category {
+//             id
+//             name
+//             photo
+//             createdAt
+//             updatedAt
+//             commandId
+//           }
+//           type
+//               commandId
+//         }
+//       }
+//     }
+//   }
+// }
+
+// {
+//   "input": {
+//   "sorting": {
+//     "type": "DESC",
+//         "field":"createdAt"
+//   },
+//   "pagination": null
+// }
+// }
 
 export const operations: Operation[] = [
   {
@@ -18,6 +79,7 @@ export const operations: Operation[] = [
       createdAt: '2024-08-23T16:24:54.719Z',
       updatedAt: '2024-08-23T16:24:54.719Z',
     },
+    commandId: '23209230423539',
     isFavorite: true,
     photo: 'https://picsum.photos/id/519/200/300',
   },
@@ -28,6 +90,7 @@ export const operations: Operation[] = [
     date: '2024-10-27T00:00:00.000Z',
     createdAt: '2024-10-05T05:52:39.613Z',
     updatedAt: '2024-10-05T05:52:46.441Z',
+    commandId: '23209230423539',
     type: 'Cost',
     amount: 12,
     category: {
@@ -48,6 +111,7 @@ export const operations: Operation[] = [
     date: '2024-09-28T00:00:00.000Z',
     createdAt: '2024-09-28T20:34:51.143Z',
     updatedAt: '2024-09-30T19:10:25.513Z',
+    commandId: '23209230423539',
     type: 'Profit',
     amount: 11,
     category: {
@@ -92,7 +156,14 @@ export const operations: Operation[] = [
     type: 'Profit',
     amount: 555,
     commandId: '23209230423539',
-    category: null,
+    category: {
+      id: '66c2523e8e877ac8a954a258',
+      name: 'Ягоды',
+      photo: 'http://19429ba06ff2.vps.myjino.ru/img/volga.jpg',
+      commandId: 'Vitala',
+      createdAt: '2024-08-18T19:57:50.450Z',
+      updatedAt: '2024-08-22T21:18:43.597Z',
+    },
     isFavorite: false,
     photo: 'https://picsum.photos/id/701/200/300',
   },
@@ -124,6 +195,7 @@ export const operations: Operation[] = [
     date: '2024-08-22T17:47:28.277Z',
     createdAt: '2024-08-22T18:23:04.155Z',
     updatedAt: '2024-08-22T18:23:04.155Z',
+    commandId: 'string11',
     type: 'Profit',
     amount: 123,
     category: {
@@ -189,7 +261,14 @@ export const operations: Operation[] = [
     type: 'Profit',
     amount: 1000,
     commandId: 'JohnyJohnson',
-    category: null,
+    category: {
+      id: '66bb2a208e877ac8a953a51d',
+      name: 'Проезд',
+      photo: '',
+      commandId: 'JohnyJohnson',
+      createdAt: '2024-08-13T09:40:48.871Z',
+      updatedAt: '2024-08-13T09:40:48.871Z',
+    },
     isFavorite: false,
     photo: 'https://picsum.photos/id/788/200/300',
   },

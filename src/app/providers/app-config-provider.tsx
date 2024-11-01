@@ -4,6 +4,8 @@ import { Theme } from '@/app/theme/types.ts';
 import { applyNewTheme } from '@/app/theme/applyTheme.ts';
 import { useTranslation } from 'react-i18next';
 import { LocalAppConfigService } from '@/shared/services/AppConfigService.ts';
+import { useAppDispatch } from '@/app/store/store.ts';
+import { initApp } from '@/app/store/slices/initSlice.ts';
 
 export type AppConfigContextType = {
   theme: Theme;
@@ -19,6 +21,7 @@ export const AppConfigContext = createContext<AppConfigContextType>(
 const initialAppConfig = LocalAppConfigService.getConfig();
 
 export const AppConfigProvider = ({ children }: PropsWithChildren) => {
+  const dispatch = useAppDispatch();
   const { i18n } = useTranslation();
 
   const [theme, setAppTheme] = useState(initialAppConfig.theme);
@@ -31,6 +34,10 @@ export const AppConfigProvider = ({ children }: PropsWithChildren) => {
     setAppLang,
     setAppTheme,
   };
+
+  useEffect(() => {
+    dispatch(initApp());
+  }, []);
 
   useEffect(() => {
     applyNewTheme(theme);

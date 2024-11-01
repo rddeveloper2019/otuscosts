@@ -1,12 +1,11 @@
 import styles from './operation-modal-form-widget.module.scss';
-
 import { FC } from 'react';
-import { Operation } from '@/shared/types';
 import { OperationDetailModalFormFeature } from '@/features';
 import { ModalHookOptions } from '@/shared/hooks/useModal.ts';
 import { CategoryModalFormFeature } from '@/features/category-modal-form-feature';
 import { TextButton } from '@/shared/components/text-button';
 import { TextButtonState } from '@/shared/components/text-button/types.ts';
+import { Operation } from '@/shared/api-types.ts';
 
 export type OperationModalFormWidgetProps = {
   operation?: Operation;

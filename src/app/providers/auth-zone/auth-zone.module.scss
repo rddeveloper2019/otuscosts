@@ -1,0 +1,8 @@
+@use '@/app/theme/variables';
+
+.auth-zone {
+  text-align: center;
+  color: variables.$color-warn;
+  margin-top: 50px;
+  font-size: 26px;
+}

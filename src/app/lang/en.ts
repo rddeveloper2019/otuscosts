@@ -8,6 +8,11 @@ export const en = {
       login: 'login',
       logout: 'logout',
     },
+    app: {
+      auth: 'For authorized users only',
+      error: 'You broke something',
+      reload: 'Reload page',
+    },
     modal: {
       cancel: 'cancel',
       save: 'save',

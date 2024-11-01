@@ -1,8 +1,9 @@
 import styles from './profile-entity.module.scss';
 import cn from 'clsx';
 import { FC } from 'react';
-import { Profile } from '@/shared/types.ts';
 import photo from '@/public/images/logo.png';
+import { Profile } from '@/shared/api-types.ts';
+import { dateHelper } from '@/shared/utils/dateHelper.ts';
 export type ProfileEntityProps = {
   profile: Profile;
   onClick?: () => void;
@@ -16,8 +17,7 @@ export const ProfileEntity: FC<ProfileEntityProps> = ({
 }) => {
   const { signUpDate, email } = profile;
   const operationDate =
-    (signUpDate && new Date(signUpDate.toString()).toLocaleDateString('RU')) ||
-    null;
+    (signUpDate && dateHelper.utcToDateString(signUpDate)) || null;
 
   return (
     <div

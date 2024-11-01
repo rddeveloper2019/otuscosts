@@ -2,14 +2,14 @@ import styles from './operation-detail-widget.module.scss';
 import { Card } from '@/shared/components/card';
 import { OperationEntity } from '@/entities';
 import { FC } from 'react';
-import { Operation } from '@/shared/types';
 import { EditOperationFeature, FavoriteToggleFeature } from '@/features';
 import { useModal } from '@/shared/hooks/useModal.ts';
 
 import { OperationModalFormWidgetProps } from '@/widgets/operation-modal-form-widget/ui';
+import { Operation } from '@/shared/api-types.ts';
 
 type OperationDetailWidgetProps = {
-  operation: Operation;
+  operation: Operation & { isFavorite?: boolean; photo?: string };
   modalFormWidget: FC<OperationModalFormWidgetProps>;
 };
 

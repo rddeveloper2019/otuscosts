@@ -1,23 +1,24 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { TextButtonState } from '@/shared/components/text-button/types.ts';
 import { useTranslation } from 'react-i18next';
 import { TextButton } from '@/shared/components/text-button';
+import { useAuthSelector } from '@/app/store/selectors.ts';
+import { useAppDispatch } from '@/app/store/store.ts';
+import { signout } from '@/app/store/slices/authSlice.ts';
 
 export type AuthFeaturePropTypes = {
   openModal?: () => void;
-  logout?: () => void;
 };
 
-export const AuthFeature: FC<AuthFeaturePropTypes> = ({
-  openModal,
-  logout,
-}) => {
-  const [isAuth] = useState(false);
+export const AuthFeature: FC<AuthFeaturePropTypes> = ({ openModal }) => {
+  const dispatch = useAppDispatch();
+  const { isAuth } = useAuthSelector();
+
   const { t } = useTranslation();
 
   const handleClick = () => {
     !isAuth && openModal?.();
-    isAuth && logout?.();
+    isAuth && dispatch(signout());
   };
   return (
     <TextButton

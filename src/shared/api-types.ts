@@ -153,7 +153,10 @@ export type Mutation = {
   profile?: Maybe<ProfileMutations>;
 };
 
-export type Operation = Cost | Profit;
+export type Operation = (Cost | Profit) & {
+  isFavorite?: boolean;
+  photo?: string;
+};
 
 export type OperationAddInput = {
   amount: Scalars['Float']['input'];

@@ -1,8 +1,8 @@
 import styles from './operations-list-widget.module.scss';
 import { Card } from '@/shared/components/card';
 import { FC } from 'react';
-import { Operation } from '@/shared/types';
 import { OperationsListItemWidget } from '@/widgets';
+import { Operation } from '@/shared/api-types.ts';
 
 export type OperationsListPropsType = {
   operations?: Operation[];

@@ -11,7 +11,7 @@ export const useSignupMutation = () => {
     errorPolicy: 'all',
   });
 
-  const { loader, fullscreenError, proceedForm } =
+  const { loader, fullscreenError, proceedForm, data } =
     useForm<MutationArgs>(mutationTuple);
 
   const handleSubmit = ({ email, password }: Omit<SignUpBody, 'commandId'>) => {
@@ -23,6 +23,7 @@ export const useSignupMutation = () => {
   };
 
   return {
+    data,
     error: fullscreenError,
     handleSubmit,
     loader,

@@ -3,14 +3,14 @@ import { useMutation } from '@apollo/client';
 import { AuthResult, ServerErrors, SignInBody } from '@/shared/api-types.ts';
 import { useForm } from '@/shared/hooks/useForm.tsx';
 
-type MutationArgs = { profile: { signup: AuthResult } } & ServerErrors;
+type MutationArgs = { profile: { signin: AuthResult } } & ServerErrors;
 
 export const useSigninMutation = () => {
   const mutationTuple = useMutation<MutationArgs>(SIGNIN_MUTATION, {
     errorPolicy: 'all',
   });
 
-  const { loader, fullscreenError, proceedForm } =
+  const { loader, fullscreenError, proceedForm, data } =
     useForm<MutationArgs>(mutationTuple);
 
   const handleSubmit = ({ email, password }: SignInBody) => {
@@ -21,6 +21,7 @@ export const useSigninMutation = () => {
   };
 
   return {
+    data,
     error: fullscreenError,
     handleSubmit,
     loader,

@@ -1,11 +1,11 @@
 import styles from './operations-list-item-widget.module.scss';
 import { OperationEntity } from '@/entities';
 import { FC } from 'react';
-import { Operation } from '@/shared/types';
 import { FavoriteToggleFeature } from '@/features';
+import { Operation } from '@/shared/api-types.ts';
 
 type OperationsListItemWidgetProps = {
-  operation: Partial<Operation>;
+  operation: Partial<Operation> & { isFavorite?: boolean; photo?: string };
   onClick?: () => void;
 };
 

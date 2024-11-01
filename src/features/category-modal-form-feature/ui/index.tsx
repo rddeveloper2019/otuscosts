@@ -14,8 +14,8 @@ import {
   useForm,
 } from 'react-hook-form';
 import { InputField } from '@/shared/components/input-field';
-import { Category } from '@/shared/types.ts';
 import { useTranslation } from 'react-i18next';
+import { Category } from '@/shared/api-types.ts';
 
 export type CategoryFormType = {
   photo: string;
