@@ -180,7 +180,7 @@ export const OperationDetailModalFormFeature: FC<
             />
             <Controller
               name="date"
-              defaultValue={' '}
+              defaultValue={operation?.date || ''}
               control={control as unknown as Control<FieldValues>}
               rules={dateRules}
               render={({ field: { ref, ...otherProps } }) => (
