@@ -46,7 +46,7 @@ export const OperationDetailWidget: FC<OperationDetailWidgetProps> = ({
           </div>
         </Card>
       </div>
-      {modalFormWidget({ categoryFormModal, operationFormModal })}
+      {modalFormWidget({ categoryFormModal, operationFormModal, operation })}
     </>
   );
 };

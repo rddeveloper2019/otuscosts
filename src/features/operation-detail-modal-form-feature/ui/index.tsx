@@ -17,10 +17,15 @@ import { InputField } from '@/shared/components/input-field';
 import { SelectField } from '@/shared/components/select-field';
 import { TextareaField } from '@/shared/components/textarea-field';
 import { useTranslation } from 'react-i18next';
-import { Operation } from '@/shared/api-types.ts';
+import {
+  Operation,
+  OperationAddInput,
+  OperationUpdateInput,
+} from '@/shared/api-types.ts';
 import { useCategoriesSelector } from '@/app/store/selectors.ts';
 import { useAddOperationMutation } from '@/shared/models';
 import { dateHelper } from '@/shared/utils/dateHelper.ts';
+import { useEditOperationMutation } from '@/shared/models/operations/hooks/usePatchOperationMutation';
 
 export type OperationDetailModalFormFeatureProps = {
   onClose?: () => void;
@@ -54,8 +59,11 @@ export const OperationDetailModalFormFeature: FC<
   const { t } = useTranslation();
   const { categories } = useCategoriesSelector();
   const { addNewOperation, loader, error } = useAddOperationMutation();
-
-  const date = dateHelper.utcToDateString(operation?.date ?? '');
+  const {
+    editOperation,
+    loader: patchLoader,
+    error: patchError,
+  } = useEditOperationMutation();
 
   const {
     control,
@@ -67,7 +75,7 @@ export const OperationDetailModalFormFeature: FC<
     defaultValues: {
       name: operation?.name ?? '',
       desc: operation?.desc ?? '',
-      date,
+      date: operation?.date,
       amount: operation?.amount?.toString() ?? '',
       categoryId: operation?.category?.id ?? '',
     },
@@ -87,18 +95,25 @@ export const OperationDetailModalFormFeature: FC<
     amount,
     categoryId,
   }) => {
-    clearErrors();
-    reset();
-    addNewOperation({
+    const variables: OperationUpdateInput = {
       name,
       desc,
-      date: dateHelper.dateToIsoString(date),
+      date: (date && new Date(date).toDateString()) || undefined,
       amount: Number(amount),
       categoryId,
-    });
+    };
     reset({});
     onOperationFormSubmit?.();
+
+    if (operation) {
+      editOperation(operation.id, variables as OperationUpdateInput);
+    } else {
+      addNewOperation(variables as OperationAddInput);
+    }
+
     closeModal();
+    clearErrors();
+    reset();
   };
 
   const nameRules: RegisterOptions = {
@@ -113,8 +128,8 @@ export const OperationDetailModalFormFeature: FC<
   };
   return (
     <>
-      {loader()}
-      {error()}
+      {loader() || patchLoader()}
+      {error() || patchError()}
       <Modal
         visible={visible}
         onClose={onClose}

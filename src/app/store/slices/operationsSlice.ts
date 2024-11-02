@@ -28,9 +28,23 @@ const operationsSlice = createSlice({
     addOperation: (state, { payload }: PayloadAction<Operation>): void => {
       state.operations = [payload, ...state.operations];
     },
+    patchOperation: (state, { payload }: PayloadAction<Operation>): void => {
+      state.operations.forEach((old: Operation) => {
+        if (old.id === payload?.id) {
+          for (const field in payload) {
+            // @ts-ignore
+            if (payload?.[field]) {
+              // @ts-ignore
+              old[field] = payload[field];
+            }
+          }
+          // Object.assign(old, payload);
+        }
+      });
+    },
   },
 });
 
-export const { addOperations, setTotal, addOperation } =
+export const { addOperations, setTotal, patchOperation, addOperation } =
   operationsSlice.actions;
 export const operationsReducer = operationsSlice.reducer;

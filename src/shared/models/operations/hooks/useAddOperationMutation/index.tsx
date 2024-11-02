@@ -1,4 +1,4 @@
-import { ADD_OPERATION_QUERY } from './gql/add-operation-mutation.ts';
+import { ADD_OPERATION_MUTATION } from './gql/operation-mutation.ts';
 import { useMutation } from '@apollo/client';
 import {
   Operation,
@@ -14,14 +14,13 @@ import { addOperation } from '@/app/store/slices/operationsSlice.ts';
 export type AddOperationMutationResponse = {
   operations: {
     add: Operation;
-    type: OperationType;
   };
 } & ServerErrors;
 
 export const useAddOperationMutation = () => {
   const dispatch = useAppDispatch();
   const mutationTuple = useMutation<AddOperationMutationResponse>(
-    ADD_OPERATION_QUERY,
+    ADD_OPERATION_MUTATION,
     {
       errorPolicy: 'all',
     }

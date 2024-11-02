@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const ADD_OPERATION_QUERY = gql`
+export const ADD_OPERATION_MUTATION = gql`
   mutation Add($input: OperationAddInput!) {
     operations {
       add(input: $input) {

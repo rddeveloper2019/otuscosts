@@ -16,6 +16,7 @@ export type OperationModalFormWidgetProps = {
 export const OperationModalFormWidget: FC<OperationModalFormWidgetProps> = ({
   operationFormModal,
   categoryFormModal,
+  operation,
 }) => {
   const onOperationFormSubmit = (data: any) => console.log(data);
 
@@ -36,6 +37,7 @@ export const OperationModalFormWidget: FC<OperationModalFormWidgetProps> = ({
     <>
       <OperationDetailModalFormFeature
         visible={operationFormModal.isModalOpen}
+        operation={operation}
         onClose={operationFormModal.closeModal}
         onOperationFormSubmit={onOperationFormSubmit}
         categoryButtons={
