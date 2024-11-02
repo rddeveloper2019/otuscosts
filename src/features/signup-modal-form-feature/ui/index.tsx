@@ -75,7 +75,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
 
   const handleCancel = () => {
     clearErrors();
-    reset();
+    reset({});
     onAction?.();
     onClose?.();
   };
@@ -90,6 +90,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
     });
     onAction?.();
     onClose?.();
+    reset({});
   };
 
   const emailRules: RegisterOptions = {

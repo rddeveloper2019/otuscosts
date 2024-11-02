@@ -64,7 +64,6 @@ export const EditProfileModalFormFeature: FC<
     if (data) {
       const { profile } = data as unknown as { profile: { update: Profile } };
 
-      console.log('(**)=> data: ', data);
       profile &&
         profile?.update &&
         dispatch(
@@ -72,8 +71,16 @@ export const EditProfileModalFormFeature: FC<
             profile: profile.update,
           })
         );
+
+      profile?.update &&
+        reset({
+          name: profile.update.name || '',
+          email: profile.update.email,
+          date: signUpDate,
+        });
     }
   }, [data]);
+
   const handleCancel = () => {
     clearErrors();
     closeModal();
@@ -81,7 +88,6 @@ export const EditProfileModalFormFeature: FC<
 
   const onConfirm: SubmitHandler<ProfileFormType> = ({ name }) => {
     name && save({ name });
-    reset();
     closeModal();
     onEdit?.();
   };

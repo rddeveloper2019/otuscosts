@@ -72,15 +72,16 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
 
   const handleCancel = () => {
     clearErrors();
-    reset();
     onClose?.();
     onAction?.();
+    reset({});
   };
 
   const onConfirm: SubmitHandler<SigninFormType> = ({ email, password }) => {
     login({ email, password });
     onAction?.();
     onClose?.();
+    reset({});
   };
 
   const emailRules: RegisterOptions = {
