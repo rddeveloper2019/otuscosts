@@ -24,17 +24,17 @@ export const getMinMax = <T, K extends keyof T>(
 };
 
 export const getMinMaxDates = (
-  items: { createdAt: string }[]
+  items: { date: string }[]
 ): { min: Date; max: Date } => {
   if (items.length === 0) {
     throw new Error('Array must not be empty');
   }
 
-  let min: Date = new Date(items[0].createdAt);
-  let max: Date = new Date(items[0].createdAt);
+  let min: Date = new Date(items[0].date);
+  let max: Date = new Date(items[0].date);
 
   for (const item of items) {
-    const value = new Date(item.createdAt);
+    const value = new Date(item.date);
 
     if (value < min) {
       min = value;

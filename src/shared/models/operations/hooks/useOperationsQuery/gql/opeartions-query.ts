@@ -1,9 +1,9 @@
 import { gql } from '@apollo/client';
 
 export const OPERATIONS_QUERY = gql`
-  query Data($input: OperationGetManyInput) {
+  query Data {
     operations {
-      getMany(input: $input) {
+      getMany {
         data {
           ... on Profit {
             id
@@ -35,11 +35,6 @@ export const OPERATIONS_QUERY = gql`
             type
             commandId
           }
-        }
-        pagination {
-          total
-          pageSize
-          pageNumber
         }
         sorting {
           type

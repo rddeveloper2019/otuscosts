@@ -17,8 +17,8 @@ export const useEditProfileMutation = () => {
   const { loader, fullscreenError, proceedForm, data } =
     useForm<MutationArgs>(mutationTuple);
 
-  const handleSubmit = ({ name }: UpdateProfileInput) => {
-    proceedForm<{ input: UpdateProfileInput }>({
+  const handleSubmit = async ({ name }: UpdateProfileInput) => {
+    await proceedForm<{ input: UpdateProfileInput }>({
       input: {
         name,
       },

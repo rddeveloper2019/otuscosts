@@ -6,8 +6,13 @@ import { EditOperationFeature, FavoriteToggleFeature } from '@/features';
 import { useModal } from '@/shared/hooks/useModal.ts';
 
 import { OperationModalFormWidgetProps } from '@/widgets/operation-modal-form-widget/ui';
-import { Operation } from '@/shared/api-types.ts';
+import {
+  Operation,
+  OperationType,
+  OperationUpdateInput,
+} from '@/shared/api-types.ts';
 import { isOperationFavorite } from '@/shared/utils/isOperationFavorite.ts';
+import { useEditOperationMutation } from '@/shared/models/operations/hooks/usePatchOperationMutation';
 
 type OperationDetailWidgetProps = {
   operation: Operation;
@@ -18,12 +23,24 @@ export const OperationDetailWidget: FC<OperationDetailWidgetProps> = ({
   operation,
   modalFormWidget,
 }) => {
+  const { editOperation, loader, error } = useEditOperationMutation();
+
   const operationFormModal = useModal();
 
   const categoryFormModal = useModal();
 
+  const toggleOperationFavorite = (id: string) => () => {
+    const type =
+      operation.type === OperationType.Cost
+        ? OperationType.Profit
+        : OperationType.Cost;
+    editOperation(id, { type } as OperationUpdateInput);
+  };
+
   return (
     <>
+      {loader()}
+      {error()}
       <div className={styles['operation-detail-widget']}>
         <Card>
           <OperationEntity
@@ -35,12 +52,7 @@ export const OperationDetailWidget: FC<OperationDetailWidgetProps> = ({
           <div className={styles['features']}>
             <FavoriteToggleFeature
               isFavorite={isOperationFavorite(operation)}
-              id={operation.id}
-              onToggleFavorite={() =>
-                console.log(
-                  'operation-detail-widget FavoriteToggleFeature clicked'
-                )
-              }
+              onToggleFavorite={toggleOperationFavorite(operation.id)}
             />
             <EditOperationFeature onClick={operationFormModal.openModal} />
           </div>

@@ -5,25 +5,22 @@ import styles from './favorite-toggle-feature.module.scss';
 import cn from 'clsx';
 
 type FavoriteToggleFeatureProps = {
-  id?: string;
   isFavorite?: boolean;
   onToggleFavorite?: () => void;
   animated?: boolean;
 };
 
 export const FavoriteToggleFeature: FC<FavoriteToggleFeatureProps> = ({
-  id,
   isFavorite = false,
   onToggleFavorite,
   animated = true,
 }) => {
-  console.log('(**)=> id: ', id);
   return (
     <TextButton
       type="button"
       state={isFavorite ? TextButtonState.SECONDARY : TextButtonState.PRIMARY}
       className={cn(styles['favorite-toggle-button'], styles.large)}
-      handleClick={() => onToggleFavorite?.()}
+      handleClick={onToggleFavorite}
       animated={animated}
     >
       ★

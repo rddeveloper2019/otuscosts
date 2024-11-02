@@ -34,11 +34,11 @@ export const useEditOperationMutation = () => {
     }
   }, [data]);
 
-  const editOperation = (
+  const editOperation = async (
     patchId: string,
     input: Omit<OperationUpdateInput, 'type'>
   ) => {
-    proceedForm({
+    await proceedForm({
       input,
       patchId,
     });

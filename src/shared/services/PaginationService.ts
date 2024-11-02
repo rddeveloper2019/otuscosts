@@ -13,17 +13,10 @@ export type PaginationRequestOptions = {
 export class PaginationService {
   static pageNumber = 1;
 
-  static getPaginationOptions = (more?: boolean): PaginationRequestOptions => {
-    const count = more ? ++PaginationService.pageNumber : 1;
-
-    return {
-      pagination: {
-        pageSize: 8,
-        pageNumber: count,
-      },
-      sorting: { type: SortType.Desc, field: SortField.Date },
-    };
+  static getPaginationOptions = (): Omit<Sorting, '__typename'> => {
+    return { type: SortType.Desc, field: SortField.Date };
   };
+
   static resetCounter = (): void => {
     PaginationService.pageNumber = 1;
   };

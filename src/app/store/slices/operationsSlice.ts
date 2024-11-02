@@ -4,12 +4,12 @@ import { Operation } from '@/shared/api-types.ts';
 
 type operationsStateType = {
   operations: Operation[];
-  total: number;
+  total?: number;
 };
 
 const initialState: operationsStateType = {
   operations: [],
-  total: 0,
+  total: undefined,
 };
 
 const operationsSlice = createSlice({
@@ -20,14 +20,12 @@ const operationsSlice = createSlice({
       state,
       { payload }: PayloadAction<{ operations: Operation[] }>
     ): void => {
-      state.operations = [...state.operations, ...payload.operations];
-    },
-    setTotal: (state, { payload }: PayloadAction<number>): void => {
-      state.total = payload;
+      state.operations = payload.operations;
     },
     addOperation: (state, { payload }: PayloadAction<Operation>): void => {
       state.operations = [payload, ...state.operations];
     },
+
     patchOperation: (state, { payload }: PayloadAction<Operation>): void => {
       state.operations.forEach((old: Operation) => {
         if (old.id === payload?.id) {
@@ -45,6 +43,6 @@ const operationsSlice = createSlice({
   },
 });
 
-export const { addOperations, setTotal, patchOperation, addOperation } =
+export const { addOperations, patchOperation, addOperation } =
   operationsSlice.actions;
 export const operationsReducer = operationsSlice.reducer;

@@ -98,7 +98,7 @@ export const OperationDetailModalFormFeature: FC<
     const variables: OperationUpdateInput = {
       name,
       desc,
-      date: (date && new Date(date).toDateString()) || undefined,
+      date: dateHelper.dateToIsoString(date),
       amount: Number(amount),
       categoryId,
     };
@@ -180,6 +180,7 @@ export const OperationDetailModalFormFeature: FC<
             />
             <Controller
               name="date"
+              defaultValue={' '}
               control={control as unknown as Control<FieldValues>}
               rules={dateRules}
               render={({ field: { ref, ...otherProps } }) => (

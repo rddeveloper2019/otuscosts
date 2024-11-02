@@ -13,8 +13,8 @@ export const useSigninMutation = () => {
   const { loader, fullscreenError, proceedForm, data } =
     useForm<MutationArgs>(mutationTuple);
 
-  const handleSubmit = ({ email, password }: SignInBody) => {
-    proceedForm<SignInBody>({
+  const handleSubmit = async ({ email, password }: SignInBody) => {
+    await proceedForm<SignInBody>({
       email,
       password,
     });

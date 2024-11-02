@@ -1,6 +1,5 @@
 import { FullscreenLoader } from '@/shared/components/fullscreen-loader';
 import { FullScreenError } from '@/shared/components/full-screen-error/full-screen-error.tsx';
-import { ServerError } from '@/shared/api-types.ts';
 import {
   ApolloCache,
   DefaultContext,
@@ -17,14 +16,6 @@ export const useForm = <T,>(gql: gqlRequest<T>) => {
   const [proceed, variables] = gql;
   const { data, loading, error } = variables;
 
-  error?.message &&
-    console.log('(**)=> error: ', {
-      message: error?.message,
-      code:
-        error?.cause?.extensions &&
-        (error?.cause as ServerError).extensions.code,
-    });
-
   const loader = () => <FullscreenLoader active={loading} />;
 
   const fullscreenError = () => (
@@ -36,8 +27,10 @@ export const useForm = <T,>(gql: gqlRequest<T>) => {
     />
   );
 
-  const proceedForm = <T extends OperationVariables>(variables: T) => {
-    proceed({ variables });
+  const proceedForm = async <T extends OperationVariables>(
+    variables: T
+  ): Promise<void> => {
+    await proceed({ variables });
   };
 
   return {

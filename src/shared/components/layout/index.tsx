@@ -2,7 +2,6 @@ import styles from './layout.module.scss';
 import { FC, PropsWithChildren, ReactNode, useEffect } from 'react';
 import { AuthZone } from '@/app/providers/auth-zone';
 import { useOperationsQuery } from '@/shared/models/operations/hooks/useOperationsQuery';
-import { PaginationService } from '@/shared/services/PaginationService.ts';
 import { useCategoriesQuery } from '@/shared/models';
 
 export type LayoutProps = PropsWithChildren & {
@@ -10,20 +9,26 @@ export type LayoutProps = PropsWithChildren & {
 };
 
 export const Layout: FC<LayoutProps> = ({ header, children }) => {
-  const { loader, loadOperations, error } = useOperationsQuery();
-  const { loader: categoriesLoader, loadData: loadCategories } =
-    useCategoriesQuery();
+  const {
+    loader: getOperationsLoader,
+    loadOperations,
+    error: getOperationsError,
+  } = useOperationsQuery();
+
+  const {
+    loader: categoriesLoader,
+    loadData: loadCategories,
+    error: categoriesError,
+  } = useCategoriesQuery();
 
   useEffect(() => {
-    PaginationService.resetCounter();
-    loadOperations();
-    loadCategories();
+    loadCategories().then(loadOperations);
   }, []);
 
   return (
     <>
-      {loader() || categoriesLoader()}
-      {error()}
+      {getOperationsLoader() || categoriesLoader()}
+      {getOperationsError() || categoriesError()}
       <div className={styles.layout}>
         <div>{header}</div>
         <AuthZone className={styles.content}>{children}</AuthZone>

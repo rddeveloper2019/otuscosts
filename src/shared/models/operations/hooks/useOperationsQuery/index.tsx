@@ -10,9 +10,7 @@ import { useForm } from '@/shared/models/hooks/useForm.tsx';
 import { useEffect } from 'react';
 import { useAppDispatch } from '@/app/store/store.ts';
 import { PaginationService } from '@/shared/services/PaginationService.ts';
-import { addOperations, setTotal } from '@/app/store/slices/operationsSlice.ts';
-import { useOperationsSelector } from '@/app/store/selectors.ts';
-import { isDefined } from '@/shared/utils/isDefined.ts';
+import { addOperations } from '@/app/store/slices/operationsSlice.ts';
 
 export type CategoriesQueryResponse = {
   operations: {
@@ -25,7 +23,6 @@ export type CategoriesQueryResponse = {
 } & ServerErrors;
 
 export const useOperationsQuery = () => {
-  const { operations, total } = useOperationsSelector();
   const dispatch = useAppDispatch();
   const queryTuple = useLazyQuery<CategoriesQueryResponse>(OPERATIONS_QUERY, {
     errorPolicy: 'all',
@@ -38,21 +35,12 @@ export const useOperationsQuery = () => {
     if (data) {
       const newOperations = data.operations.getMany.data || [];
       dispatch(addOperations({ operations: newOperations }));
-      dispatch(setTotal(data.operations.getMany.pagination.total));
     }
   }, [data]);
 
-  const loadOperations = (more?: boolean) => {
-    if (!more) {
-      PaginationService.resetCounter();
-    }
-
-    if (more && operations.length >= total && isDefined(total)) {
-      return;
-    }
-
-    proceedForm({
-      input: PaginationService.getPaginationOptions(more),
+  const loadOperations = async () => {
+    await proceedForm({
+      input: PaginationService.getPaginationOptions(),
     });
   };
 

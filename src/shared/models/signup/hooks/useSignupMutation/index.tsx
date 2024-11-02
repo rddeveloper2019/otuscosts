@@ -14,8 +14,11 @@ export const useSignupMutation = () => {
   const { loader, fullscreenError, proceedForm, data } =
     useForm<MutationArgs>(mutationTuple);
 
-  const handleSubmit = ({ email, password }: Omit<SignUpBody, 'commandId'>) => {
-    proceedForm<SignUpBody>({
+  const handleSubmit = async ({
+    email,
+    password,
+  }: Omit<SignUpBody, 'commandId'>) => {
+    await proceedForm<SignUpBody>({
       email,
       password,
       commandId,

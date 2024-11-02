@@ -16,9 +16,7 @@ export const OperationEntity: FC<OperationEntityProps> = ({
   onClick,
   className,
 }) => {
-  const { id, amount, name, desc, category, date } = operation;
-
-  console.log('(**)=> id: ', id);
+  const { amount, name, desc, category, date } = operation;
 
   const operationDate = dateHelper.utcToDateString(date ?? '');
 

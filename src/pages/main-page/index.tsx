@@ -9,39 +9,34 @@ import { useModal } from '@/shared/hooks/useModal.ts';
 import styles from './main-page.module.scss';
 import { Operation } from '@/shared/api-types.ts';
 import { useOperationsSelector } from '@/app/store/selectors.ts';
-import { useOperationsQuery } from '@/shared/models/operations/hooks/useOperationsQuery';
+import { useState } from 'react';
 
 export const MainPage = () => {
   const navigate = useNavigate();
-  const { loader, loadOperations, error } = useOperationsQuery();
   const { operations } = useOperationsSelector();
+  const [filteredOperations, setFilteredOperations] = useState<Operation[]>([]);
 
   const operationFormModal = useModal();
   const categoryFormModal = useModal();
 
-  const loadMoreOperations = () => {
-    loadOperations(true);
-  };
-
   const redirectToDetail = (operation: Operation) => {
     navigate(`/operation/${operation.id}`, { state: { id: operation.id } });
   };
+
+  console.log('(**)=> filteredOperations: ', filteredOperations);
   return (
     <>
-      {loader()}
-      {error()}
       <div className={styles.split}>
         <div className={styles.content}>
           {!!operations.length && (
             <>
               <OperationsFilterWidget
                 operations={operations}
-                onFilter={(data) => console.log(data)}
+                onFilter={setFilteredOperations}
               />
               <OperationsListWidget
-                operations={operations}
+                operations={filteredOperations}
                 onItemSelect={redirectToDetail}
-                addMore={loadMoreOperations}
               />
             </>
           )}

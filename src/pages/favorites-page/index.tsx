@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import styles from './favorites-page.module.scss';
 import { Operation } from '@/shared/api-types.ts';
 import { useOperationsSelector } from '@/app/store/selectors.ts';
+import { isOperationFavorite } from '@/shared/utils/isOperationFavorite.ts';
+import { useState } from 'react';
 
 export const FavoritesPage = () => {
   const { operations } = useOperationsSelector();
   const navigate = useNavigate();
-
+  const [filteredOperations, setFilteredOperations] = useState<Operation[]>([]);
   const redirectToDetail = (operation: Operation) => {
     navigate(`/operation/${operation.id}`, { state: { id: operation.id } });
   };
@@ -19,13 +21,11 @@ export const FavoritesPage = () => {
           {!!operations.length && (
             <>
               <OperationsFilterWidget
-                operations={operations}
-                onFilter={(data) => console.log(data)}
+                operations={operations.filter(isOperationFavorite)}
+                onFilter={setFilteredOperations}
               />
               <OperationsListWidget
-                operations={operations.filter(
-                  (operation) => operation.isFavorite
-                )}
+                operations={filteredOperations}
                 onItemSelect={redirectToDetail}
               />
             </>
