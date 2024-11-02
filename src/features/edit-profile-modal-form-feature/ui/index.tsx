@@ -17,10 +17,10 @@ import { InputField } from '@/shared/components/input-field';
 import { useModal } from '@/shared/hooks/useModal.ts';
 import { useTranslation } from 'react-i18next';
 import { Profile } from '@/shared/api-types.ts';
-import { useEditProfileMutation } from '@/features/edit-profile-modal-form-feature/model';
 import { useAppDispatch } from '@/app/store/store.ts';
 import { editProfile } from '@/app/store/slices/authSlice.ts';
 import { useAuthSelector } from '@/app/store/selectors.ts';
+import { useEditProfileMutation } from '@/shared/models';
 
 export type ProfileFormType = {
   email: string;

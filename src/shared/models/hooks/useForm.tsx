@@ -4,19 +4,18 @@ import { ServerError } from '@/shared/api-types.ts';
 import {
   ApolloCache,
   DefaultContext,
+  LazyQueryResultTuple,
   MutationTuple,
   OperationVariables,
 } from '@apollo/client';
 
-export const useForm = <T,>(
-  mutation: MutationTuple<
-    T,
-    OperationVariables,
-    DefaultContext,
-    ApolloCache<unknown>
-  >
-) => {
-  const [proceed, { data, reset, loading, error }] = mutation;
+type gqlRequest<T> =
+  | MutationTuple<T, OperationVariables, DefaultContext, ApolloCache<unknown>>
+  | LazyQueryResultTuple<T, OperationVariables>;
+
+export const useForm = <T,>(gql: gqlRequest<T>) => {
+  const [proceed, variables] = gql;
+  const { data, loading, error } = variables;
 
   console.log('(**)=> error: ', {
     message: error?.message,
@@ -27,7 +26,12 @@ export const useForm = <T,>(
   const loader = () => <FullscreenLoader active={loading} />;
 
   const fullscreenError = () => (
-    <FullScreenError error={error?.message} onClose={() => reset?.()} />
+    <FullScreenError
+      error={error?.message}
+      onClose={() =>
+        (variables as { reset?: ApolloCache<unknown>['reset'] })?.reset?.()
+      }
+    />
   );
 
   const proceedForm = <T extends OperationVariables>(variables: T) => {
@@ -39,5 +43,6 @@ export const useForm = <T,>(
     proceedForm,
     loader,
     fullscreenError,
+    loadData: proceed,
   };
 };

@@ -1,8 +1,8 @@
 import { SIGNUP_MUTATION } from './gql/signup-mutation.ts';
 import { useMutation } from '@apollo/client';
-import { commandId } from '@/app/providers/api/constants/client.ts';
+import { commandId } from '@/shared/api/constants/client.ts';
 import { AuthResult, ServerErrors, SignUpBody } from '@/shared/api-types.ts';
-import { useForm } from '@/shared/hooks/useForm.tsx';
+import { useForm } from '@/shared/models/hooks/useForm.tsx';
 
 type MutationArgs = { profile: { signup: AuthResult } } & ServerErrors;
 

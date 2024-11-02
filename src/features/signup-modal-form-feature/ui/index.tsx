@@ -15,10 +15,10 @@ import {
 } from 'react-hook-form';
 import { InputField } from '@/shared/components/input-field';
 import { useTranslation } from 'react-i18next';
-import { useSignupMutation } from '@/features/signup-modal-form-feature/model';
 import { AuthResult } from '@/shared/api-types.ts';
 import { signup } from '@/app/store/slices/authSlice.ts';
 import { useAppDispatch } from '@/app/store/store.ts';
+import { useSignupMutation } from '@/shared/models';
 
 export type RegistrationFormType = {
   email: string;

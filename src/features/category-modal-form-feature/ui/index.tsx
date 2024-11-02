@@ -15,7 +15,7 @@ import {
 } from 'react-hook-form';
 import { InputField } from '@/shared/components/input-field';
 import { useTranslation } from 'react-i18next';
-import { Category } from '@/shared/api-types.ts';
+import { useAddCategoryMutation } from '@/shared/models';
 
 export type CategoryFormType = {
   photo: string;
@@ -23,7 +23,6 @@ export type CategoryFormType = {
 };
 
 type CategoryModalFormFeature = {
-  category?: Category;
   onEdit: () => void;
   visible: boolean;
   onCategoryModalClose: () => void;
@@ -31,18 +30,13 @@ type CategoryModalFormFeature = {
 };
 
 export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
-  category,
   onEdit,
   visible,
   onCategoryModalClose,
   onDismiss,
 }) => {
+  const { error, handleSubmit: addCategory, loader } = useAddCategoryMutation();
   const { t } = useTranslation();
-
-  const signUpDate = category?.createdAt
-    ? new Date(category.createdAt).toLocaleDateString('en-CA')
-    : '';
-  console.log('(**)=> signUpDate: ', signUpDate);
 
   const {
     control,
@@ -52,19 +46,20 @@ export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
     reset,
   } = useForm<CategoryFormType>({
     defaultValues: {
-      name: category?.name || '',
-      photo: category?.photo || '',
+      name: '',
+      photo: '',
     },
   });
 
   const handleCancel = () => {
     clearErrors();
-    reset();
+    reset({});
     onDismiss?.();
   };
 
   const onConfirm: SubmitHandler<CategoryFormType> = ({ name, photo }) => {
-    console.log('(**)=> save category: ', { name, photo });
+    addCategory({ name, photo });
+    reset({});
     onEdit?.();
   };
 
@@ -84,6 +79,8 @@ export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
 
   return (
     <>
+      {loader()}
+      {error()}
       <Modal
         visible={visible}
         backgroundClickHandler={handleCancel}

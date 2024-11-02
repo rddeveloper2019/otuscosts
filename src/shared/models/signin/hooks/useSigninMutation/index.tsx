@@ -1,7 +1,7 @@
 import { SIGNIN_MUTATION } from './gql/signin-mutation.ts';
 import { useMutation } from '@apollo/client';
 import { AuthResult, ServerErrors, SignInBody } from '@/shared/api-types.ts';
-import { useForm } from '@/shared/hooks/useForm.tsx';
+import { useForm } from '@/shared/models/hooks/useForm.tsx';
 
 type MutationArgs = { profile: { signin: AuthResult } } & ServerErrors;
 

@@ -1,5 +1,5 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
-import { commandId, URL } from '@/app/providers/api/constants/client.ts';
+import { commandId, URL } from '@/shared/api/constants/client.ts';
 import { TokenService } from '@/shared/services/TokenService.ts';
 import { setContext } from '@apollo/client/link/context';
 

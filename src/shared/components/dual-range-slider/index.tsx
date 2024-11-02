@@ -81,7 +81,6 @@ export const DualRangeSlider: FC<DualRangeSliderProps> = ({
   useResizeObserver(leftCursor, handleLeft);
   useResizeObserver(rightCursor, handleRight);
 
-  console.log('(**)=> leftValueText: ', leftValueText);
   return (
     <div style={{ width }} className={cn(className)}>
       <div className={cn(styles['slider'])}>

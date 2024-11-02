@@ -5,7 +5,7 @@ import {
   ServerErrors,
   UpdateProfileInput,
 } from '@/shared/api-types.ts';
-import { useForm } from '@/shared/hooks/useForm.tsx';
+import { useForm } from '@/shared/models/hooks/useForm.tsx';
 
 type MutationArgs = { profile: { update: Profile } } & ServerErrors;
 

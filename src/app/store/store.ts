@@ -2,10 +2,12 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { initReducer } from './slices/initSlice';
 import { useDispatch } from 'react-redux';
 import { authReducer } from './slices/authSlice';
+import { categoriesReducer } from '@/app/store/slices/categoriesSlice.ts';
 
 const rootReducer = combineReducers({
   init: initReducer,
   auth: authReducer,
+  categories: categoriesReducer,
 });
 
 const store = configureStore({

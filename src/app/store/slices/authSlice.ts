@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { commandId } from '@/app/providers/api/constants/client.ts';
+import { commandId } from '@/shared/api/constants/client.ts';
 import { TokenService } from '@/shared/services/TokenService.ts';
 import { Profile } from '@/shared/api-types.ts';
 

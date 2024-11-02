@@ -4,7 +4,7 @@ import styles from './auth-zone.module.scss';
 import cn from 'clsx';
 import { useLocation } from 'react-router-dom';
 import { TokenService } from '@/shared/services/TokenService.ts';
-import { commandId } from '@/app/providers/api/constants/client.ts';
+import { commandId } from '@/shared/api/constants/client.ts';
 import { useAppDispatch } from '@/app/store/store.ts';
 import { signout } from '@/app/store/slices/authSlice.ts';
 import { useTranslation } from 'react-i18next';

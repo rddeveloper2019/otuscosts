@@ -50,7 +50,7 @@ export const OperationModalFormWidget: FC<OperationModalFormWidgetProps> = ({
         }
       />
       <CategoryModalFormFeature
-        onEdit={() => {}}
+        onEdit={onCategoryModalClose}
         onCategoryModalClose={onCategoryModalClose}
         visible={categoryFormModal.isModalOpen}
         onDismiss={onCategoryModalDismiss}
