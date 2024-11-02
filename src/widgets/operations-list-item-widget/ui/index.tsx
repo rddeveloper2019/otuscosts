@@ -24,7 +24,6 @@ export const OperationsListItemWidget: FC<OperationsListItemWidgetProps> = ({
       />
       <FavoriteToggleFeature
         isFavorite={isOperationFavorite(operation as Operation)}
-        id={operation.id}
         animated={false}
         onToggleFavorite={() => onClick?.()}
       />

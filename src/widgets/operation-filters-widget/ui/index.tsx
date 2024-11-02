@@ -52,7 +52,6 @@ export const OperationsFilterWidget: FC<OperationsFilterWidgetProps> = ({
     );
   }, [dates, amounts]);
 
-  console.log('(**)=> operations: ', operations);
   return (
     <div className={cn(className, styles['filters-widget'])}>
       <FilterOperationsFeature

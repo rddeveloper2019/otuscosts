@@ -23,7 +23,6 @@ export const MainPage = () => {
     navigate(`/operation/${operation.id}`, { state: { id: operation.id } });
   };
 
-  console.log('(**)=> filteredOperations: ', filteredOperations);
   return (
     <>
       <div className={styles.split}>
