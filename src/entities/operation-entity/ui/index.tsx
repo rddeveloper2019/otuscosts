@@ -2,9 +2,10 @@ import styles from './operation-entity.module.scss';
 import cn from 'clsx';
 import { FC } from 'react';
 import { Operation } from '@/shared/api-types.ts';
+import { dateHelper } from '@/shared/utils/dateHelper.ts';
 
 export type OperationEntityProps = {
-  operation: Partial<Operation> & { isFavorite?: boolean; photo?: string };
+  operation: Partial<Operation>;
   onClick?: () => void;
   className?: string;
   photo?: string;
@@ -15,20 +16,11 @@ export const OperationEntity: FC<OperationEntityProps> = ({
   onClick,
   className,
 }) => {
-  const {
-    id,
-    amount,
-    name,
-    desc,
-    category,
-    createdAt = '',
-    isFavorite,
-    photo,
-  } = operation;
-  console.log('(**)=> isFavorite: ', isFavorite);
+  const { id, amount, name, desc, category, date } = operation;
+
   console.log('(**)=> id: ', id);
 
-  const operationDate = new Date(createdAt.toString()).toLocaleDateString('RU');
+  const operationDate = dateHelper.utcToDateString(date ?? '');
 
   return (
     <>
@@ -36,8 +28,12 @@ export const OperationEntity: FC<OperationEntityProps> = ({
         className={cn(className, styles['operation-entity'])}
         onClick={() => onClick?.()}
       >
-        {photo && (
-          <img src={photo} alt={operation.name} className={styles.photo} />
+        {category?.photo && (
+          <img
+            src={category?.photo}
+            alt={operation.name}
+            className={styles.photo}
+          />
         )}
         <div className={cn(styles['operation-entity-content'])}>
           {category?.name && (
@@ -50,7 +46,7 @@ export const OperationEntity: FC<OperationEntityProps> = ({
               {amount.toString().replace('.', ', ')} $
             </div>
           )}
-          {createdAt && (
+          {operationDate && (
             <div className={cn(styles['created-at'])}>{operationDate}</div>
           )}
         </div>

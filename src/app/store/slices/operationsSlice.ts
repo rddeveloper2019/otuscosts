@@ -25,8 +25,12 @@ const operationsSlice = createSlice({
     setTotal: (state, { payload }: PayloadAction<number>): void => {
       state.total = payload;
     },
+    addOperation: (state, { payload }: PayloadAction<Operation>): void => {
+      state.operations = [payload, ...state.operations];
+    },
   },
 });
 
-export const { addOperations, setTotal } = operationsSlice.actions;
+export const { addOperations, setTotal, addOperation } =
+  operationsSlice.actions;
 export const operationsReducer = operationsSlice.reducer;

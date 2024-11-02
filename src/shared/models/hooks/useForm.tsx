@@ -17,11 +17,13 @@ export const useForm = <T,>(gql: gqlRequest<T>) => {
   const [proceed, variables] = gql;
   const { data, loading, error } = variables;
 
-  console.log('(**)=> error: ', {
-    message: error?.message,
-    code:
-      error?.cause?.extensions && (error?.cause as ServerError).extensions.code,
-  });
+  error?.message &&
+    console.log('(**)=> error: ', {
+      message: error?.message,
+      code:
+        error?.cause?.extensions &&
+        (error?.cause as ServerError).extensions.code,
+    });
 
   const loader = () => <FullscreenLoader active={loading} />;
 

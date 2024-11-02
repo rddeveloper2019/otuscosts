@@ -1,0 +1,7 @@
+@use '@/app/theme/variables';
+.page {
+  font-size: 48px;
+  text-align: center;
+  padding: 50px;
+  color: variables.$color-default;
+}

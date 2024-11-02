@@ -12,6 +12,7 @@ import { useAppDispatch } from '@/app/store/store.ts';
 import { PaginationService } from '@/shared/services/PaginationService.ts';
 import { addOperations, setTotal } from '@/app/store/slices/operationsSlice.ts';
 import { useOperationsSelector } from '@/app/store/selectors.ts';
+import { isDefined } from '@/shared/utils/isDefined.ts';
 
 export type CategoriesQueryResponse = {
   operations: {
@@ -46,7 +47,7 @@ export const useOperationsQuery = () => {
       PaginationService.resetCounter();
     }
 
-    if (more && operations.length >= total && total !== 0) {
+    if (more && operations.length >= total && isDefined(total)) {
       return;
     }
 

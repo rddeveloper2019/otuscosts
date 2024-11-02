@@ -7,9 +7,10 @@ import { useModal } from '@/shared/hooks/useModal.ts';
 
 import { OperationModalFormWidgetProps } from '@/widgets/operation-modal-form-widget/ui';
 import { Operation } from '@/shared/api-types.ts';
+import { isOperationFavorite } from '@/shared/utils/isOperationFavorite.ts';
 
 type OperationDetailWidgetProps = {
-  operation: Operation & { isFavorite?: boolean; photo?: string };
+  operation: Operation;
   modalFormWidget: FC<OperationModalFormWidgetProps>;
 };
 
@@ -33,7 +34,7 @@ export const OperationDetailWidget: FC<OperationDetailWidgetProps> = ({
           />
           <div className={styles['features']}>
             <FavoriteToggleFeature
-              isFavorite={operation.isFavorite}
+              isFavorite={isOperationFavorite(operation)}
               id={operation.id}
               onToggleFavorite={() =>
                 console.log(

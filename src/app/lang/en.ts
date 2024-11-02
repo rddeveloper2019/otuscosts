@@ -12,6 +12,7 @@ export const en = {
       auth: 'For authorized users only',
       error: 'You broke something',
       reload: 'Reload page',
+      404: 'Page not found',
     },
     modal: {
       cancel: 'cancel',

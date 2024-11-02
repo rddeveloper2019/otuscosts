@@ -7,7 +7,7 @@ import { HeaderWidget } from '@/widgets';
 import {
   FavoritesPage,
   MainPage,
-  NoFoundPage,
+  NotFoundPage,
   OperationDetailPage,
   ProfilePage,
 } from '@/pages';
@@ -22,7 +22,7 @@ const App = () => {
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/operation/:id" element={<OperationDetailPage />} />
-          <Route path="*" element={<NoFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
     </AppProvider>
