@@ -1,10 +1,11 @@
 import { OperationsFilterWidget, OperationsListWidget } from '@/widgets';
-import { operations } from '@/db.ts';
 import { useNavigate } from 'react-router-dom';
 import styles from './favorites-page.module.scss';
 import { Operation } from '@/shared/api-types.ts';
+import { useOperationsSelector } from '@/app/store/selectors.ts';
 
 export const FavoritesPage = () => {
+  const { operations } = useOperationsSelector();
   const navigate = useNavigate();
 
   const redirectToDetail = (operation: Operation) => {
@@ -15,7 +16,7 @@ export const FavoritesPage = () => {
     <>
       <div className={styles.split}>
         <div className={styles.content}>
-          {operations.length && (
+          {!!operations.length && (
             <>
               <OperationsFilterWidget
                 operations={operations}

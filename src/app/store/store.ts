@@ -3,11 +3,13 @@ import { initReducer } from './slices/initSlice';
 import { useDispatch } from 'react-redux';
 import { authReducer } from './slices/authSlice';
 import { categoriesReducer } from '@/app/store/slices/categoriesSlice.ts';
+import { operationsReducer } from '@/app/store/slices/operationsSlice.ts';
 
 const rootReducer = combineReducers({
   init: initReducer,
   auth: authReducer,
   categories: categoriesReducer,
+  operations: operationsReducer,
 });
 
 const store = configureStore({

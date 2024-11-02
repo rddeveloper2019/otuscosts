@@ -42,6 +42,7 @@ export const useForm = <T,>(gql: gqlRequest<T>) => {
     data,
     proceedForm,
     loader,
+    error,
     fullscreenError,
     loadData: proceed,
   };
