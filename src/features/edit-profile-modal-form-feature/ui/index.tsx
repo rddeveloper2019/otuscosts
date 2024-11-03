@@ -106,11 +106,7 @@ export const EditProfileModalFormFeature: FC<
     },
     minLength: 7,
   };
-  // console.log('(**)=> formState.isDirty: ', formState.isDirty);
-  console.log(
-    '(**)=> formState.isDirty: formState.dirtyFields.name',
-    formState.dirtyFields
-  );
+
   return (
     <>
       {loader()}

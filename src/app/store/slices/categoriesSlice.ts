@@ -23,7 +23,7 @@ const categoriesSlice = createSlice({
       state,
       { payload }: PayloadAction<{ categories: Category[] }>
     ): void => {
-      state.categories = [...state.categories, ...payload.categories];
+      state.categories = payload.categories;
     },
   },
 });
