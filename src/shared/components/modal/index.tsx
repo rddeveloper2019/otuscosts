@@ -51,6 +51,7 @@ export const Modal: FC<ModalPropSTypes> = ({
         data-set-modal-wrapper="modal-wrapper"
         className={styles.wrapper}
         onClick={onClick}
+        aria-label="modal-window"
       >
         <div className={styles['safe-zone']}>
           <div className={styles.modal}>{children}</div>

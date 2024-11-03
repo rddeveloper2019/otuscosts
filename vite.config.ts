@@ -18,6 +18,9 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['src/__tests__/setup.ts'],
+    coverage: {
+      provider: 'istanbul', // or 'v8'
+    },
   },
   resolve: {
     alias: {

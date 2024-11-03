@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { Card } from '@/shared/components/card';
 import styles from './full-screen-error.module.scss';
 
-type FullScreenErrorProps = {
+export type FullScreenErrorProps = {
   error?: string;
   onClose: () => void;
 };
