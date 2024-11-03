@@ -106,7 +106,11 @@ export const EditProfileModalFormFeature: FC<
     },
     minLength: 7,
   };
-
+  // console.log('(**)=> formState.isDirty: ', formState.isDirty);
+  console.log(
+    '(**)=> formState.isDirty: formState.dirtyFields.name',
+    formState.dirtyFields
+  );
   return (
     <>
       {loader()}
@@ -176,7 +180,7 @@ export const EditProfileModalFormFeature: FC<
               <TextButton
                 type="submit"
                 state={TextButtonState.PRIMARY}
-                disabled={!formState.isDirty}
+                disabled={!formState.dirtyFields.name}
               >
                 {t('modal.save')}
               </TextButton>
