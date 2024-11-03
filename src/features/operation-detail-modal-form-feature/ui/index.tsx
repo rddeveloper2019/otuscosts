@@ -31,7 +31,7 @@ export type OperationDetailModalFormFeatureProps = {
   onClose?: () => void;
   visible?: boolean;
   operation?: Operation;
-  onOperationFormSubmit: (operation?: OperationFormType) => void;
+  onOperationFormSubmit?: (operation?: OperationFormType) => void;
   onCancel?: () => void;
   categoryButtons?: ReactNode;
 };
@@ -71,6 +71,7 @@ export const OperationDetailModalFormFeature: FC<
     clearErrors,
     reset,
     formState: { errors },
+    formState,
   } = useForm<OperationFormType>({
     defaultValues: {
       name: operation?.name ?? '',
@@ -212,7 +213,11 @@ export const OperationDetailModalFormFeature: FC<
                 {t('modal.cancel')}
               </TextButton>
 
-              <TextButton type="submit" state={TextButtonState.PRIMARY}>
+              <TextButton
+                type="submit"
+                state={TextButtonState.PRIMARY}
+                disabled={!formState.isDirty}
+              >
                 {t('modal.save')}
               </TextButton>
             </div>

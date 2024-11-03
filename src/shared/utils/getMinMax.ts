@@ -46,14 +46,3 @@ export const getMinMaxDates = (
 
   return { min, max };
 };
-
-//
-// // Пример использования
-// const data = [
-//     { id: 1, value: 10 },
-//     { id: 2, value: 5 },
-//     { id: 3, value: 15 },
-// ];
-//
-// const result = getMinMax(data, 'value');
-// console.log(result); // { min: 5, max: 15 }

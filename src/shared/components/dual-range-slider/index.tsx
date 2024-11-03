@@ -24,7 +24,7 @@ export const DualRangeSlider: FC<DualRangeSliderProps> = ({
   onSlide,
   width = 500,
   min = 0,
-  max = 1000,
+  max = 10000,
   className,
 }) => {
   const [minValue, setMinValue] = useState(min);

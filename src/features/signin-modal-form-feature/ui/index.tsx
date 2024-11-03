@@ -46,7 +46,7 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
     handleSubmit,
     clearErrors,
     reset,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<SigninFormType>({
     defaultValues: {
       email: '',
@@ -136,7 +136,11 @@ export const SigninModalFormFeature: FC<SigninModalFormFeatureProps> = ({
             />
 
             <div className={cn(styles.buttons)}>
-              <TextButton type="submit" state={TextButtonState.PRIMARY}>
+              <TextButton
+                type="submit"
+                state={TextButtonState.PRIMARY}
+                disabled={!isDirty}
+              >
                 {t('modal.signin')}
               </TextButton>
             </div>

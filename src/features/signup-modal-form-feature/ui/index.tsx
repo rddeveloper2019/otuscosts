@@ -46,7 +46,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
     handleSubmit,
     clearErrors,
     reset,
-    formState: { errors },
+    formState: { errors, isDirty },
     watch,
   } = useForm<RegistrationFormType>({
     defaultValues: {
@@ -172,6 +172,7 @@ export const SignupModalFormFeature: FC<SignupModalFormFeatureProps> = ({
                 type="button"
                 state={TextButtonState.PRIMARY}
                 handleClick={handleSubmit(onConfirm)}
+                disabled={!isDirty}
               >
                 {t('modal.signup')}
               </TextButton>

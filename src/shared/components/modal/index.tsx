@@ -6,7 +6,6 @@ import {
   useState,
 } from 'react';
 import styles from './modal.module.scss';
-import cn from 'clsx';
 import { Portal } from '@/shared/components/portal/portal.tsx';
 
 export type ModalPropSTypes = {
@@ -50,10 +49,12 @@ export const Modal: FC<ModalPropSTypes> = ({
     <Portal>
       <div
         data-set-modal-wrapper="modal-wrapper"
-        className={cn(styles.wrapper)}
+        className={styles.wrapper}
         onClick={onClick}
       >
-        <div className={cn(styles.modal)}>{children}</div>
+        <div className={styles['safe-zone']}>
+          <div className={styles.modal}>{children}</div>
+        </div>
       </div>
     </Portal>
   );

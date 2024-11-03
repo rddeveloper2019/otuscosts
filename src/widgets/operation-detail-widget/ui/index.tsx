@@ -43,12 +43,7 @@ export const OperationDetailWidget: FC<OperationDetailWidgetProps> = ({
       {error()}
       <div className={styles['operation-detail-widget']}>
         <Card>
-          <OperationEntity
-            operation={operation}
-            onClick={() =>
-              console.log('operations-detail operation entity clicked')
-            }
-          />
+          <OperationEntity operation={operation} />
           <div className={styles['features']}>
             <FavoriteToggleFeature
               isFavorite={isOperationFavorite(operation)}

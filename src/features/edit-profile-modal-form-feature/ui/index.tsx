@@ -52,6 +52,7 @@ export const EditProfileModalFormFeature: FC<
     formState: { errors },
     clearErrors,
     reset,
+    formState,
   } = useForm<ProfileFormType>({
     defaultValues: {
       email: profile?.email || '',
@@ -172,7 +173,11 @@ export const EditProfileModalFormFeature: FC<
               )}
             />
             <div className={cn(styles.buttons)}>
-              <TextButton type="submit" state={TextButtonState.PRIMARY}>
+              <TextButton
+                type="submit"
+                state={TextButtonState.PRIMARY}
+                disabled={!formState.isDirty}
+              >
                 {t('modal.save')}
               </TextButton>
             </div>

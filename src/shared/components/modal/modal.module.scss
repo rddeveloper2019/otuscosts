@@ -16,10 +16,19 @@
   color: variables.$color-default;
 }
 
+.modal,
+.safe-zone {
+  border-radius: 4px;
+  box-shadow: variables.$main-shadow;
+}
+
 .modal {
   width: 450px;
   background: variables.$background-main;
-  border-radius: 4px;
-  box-shadow: variables.$main-shadow;
   z-index: 11;
+}
+
+.safe-zone {
+  padding: 50px;
+  border: 1px solid #235723;
 }

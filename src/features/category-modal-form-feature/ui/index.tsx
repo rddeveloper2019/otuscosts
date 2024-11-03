@@ -44,6 +44,7 @@ export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
     formState: { errors },
     clearErrors,
     reset,
+    formState,
   } = useForm<CategoryFormType>({
     defaultValues: {
       name: '',
@@ -58,6 +59,9 @@ export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
   };
 
   const onConfirm: SubmitHandler<CategoryFormType> = ({ name, photo }) => {
+    if (!formState.isDirty) {
+      return;
+    }
     addCategory({ name, photo });
     reset({});
     onEdit?.();
@@ -114,7 +118,7 @@ export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
                   error={
                     errors.photo &&
                     (`${errors.photo.message}` ||
-                      t('modal.form.validations.minlength'))
+                      t('modal.form.validations.photourl'))
                   }
                   {...field}
                 />
@@ -128,7 +132,11 @@ export const CategoryModalFormFeature: FC<CategoryModalFormFeature> = ({
               >
                 {t('modal.cancel')}
               </TextButton>
-              <TextButton type="submit" state={TextButtonState.PRIMARY}>
+              <TextButton
+                type="submit"
+                state={TextButtonState.PRIMARY}
+                disabled={!formState.isDirty}
+              >
                 {t('modal.save')}
               </TextButton>
             </div>
