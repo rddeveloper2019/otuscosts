@@ -11,7 +11,7 @@
   transition: border-color 0.3s;
   height: max-content;
   &.hidden {
-    border-color: red;
+    border-color: variables.$border-color-warn;
   }
   &.shown {
     border-color: transparent;
