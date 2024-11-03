@@ -1,4 +1,4 @@
-import { cleanup, render, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import { userEvent } from '@testing-library/user-event';
 
@@ -9,15 +9,6 @@ import {
 } from '@/shared/components/full-screen-error/full-screen-error.tsx';
 
 describe('ui/FullscreenError', () => {
-  cleanup();
-  const mockIntersectionObserver = vi.fn();
-  mockIntersectionObserver.mockReturnValue({
-    observe: () => null,
-    unobserve: () => null,
-    disconnect: () => null,
-  });
-
-  window.IntersectionObserver = mockIntersectionObserver;
   const closeFn = vi.fn();
 
   const props: FullScreenErrorProps = {

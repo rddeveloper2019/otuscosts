@@ -1,12 +1,12 @@
 import styles from './auth-modal-form-feature.module.scss';
 import { FC } from 'react';
 import { Modal } from '@/shared/components/modal';
-import { Card } from '@/shared/components/card';
 import { TextButton } from '@/shared/components/text-button';
 import { TextButtonState } from '@/shared/components/text-button/types.ts';
 import cn from 'clsx';
 import { ModalForm } from '@/widgets/auth-widget/model/constants.ts';
 import { useTranslation } from 'react-i18next';
+import { Card } from '@/shared/components/card';
 
 export type AuthModalFeatureProps = {
   onSelect: (type: ModalForm) => void;

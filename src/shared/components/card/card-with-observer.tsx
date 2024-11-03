@@ -2,16 +2,14 @@ import { FC, PropsWithChildren, useEffect, useRef, useState } from 'react';
 import styles from './card.module.scss';
 import cn from 'clsx';
 import { useObserver } from '@/shared/hooks/useObserver.ts';
+import { CardPropsType } from '@/shared/components/card';
 
-export type CardPropsType = PropsWithChildren<{
-  width?: number;
-  onClick?: () => void;
-  onIntersect?: () => void;
-  isLast?: boolean;
-  className?: string;
-}>;
+export type CardWithObserverPropsType = CardPropsType &
+  PropsWithChildren<{
+    onIntersect?: () => void;
+  }>;
 
-export const Card: FC<CardPropsType> = ({
+export const CardWithObserver: FC<CardWithObserverPropsType> = ({
   children,
   width,
   onIntersect,

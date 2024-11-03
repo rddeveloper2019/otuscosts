@@ -1,8 +1,19 @@
-import { Card, CardPropsType } from '@/shared/components/card';
+import { CardPropsType } from '@/shared/components/card';
 import { render } from '@testing-library/react';
 import { screen, fireEvent } from '@testing-library/dom';
+import { CardWithObserver } from '@/shared/components/card';
 
-describe('ui/Card', () => {
+describe('ui/CardWithObserver', () => {
+  beforeEach(() => {
+    const mockIntersectionObserver = vi.fn();
+    mockIntersectionObserver.mockReturnValue({
+      observe: () => null,
+      unobserve: () => null,
+      disconnect: () => null,
+    });
+    window.IntersectionObserver = mockIntersectionObserver;
+  });
+
   const clickFn = vi.fn();
   const props: CardPropsType = {
     className: 'test-card',
@@ -11,7 +22,7 @@ describe('ui/Card', () => {
   };
 
   it('should be render correctly', () => {
-    const { container } = render(<Card {...props} />);
+    const { container } = render(<CardWithObserver {...props} />);
     const card = container.querySelector('.test-card');
     const child = screen.getByLabelText('test-input');
     expect(card).toBeInTheDocument();

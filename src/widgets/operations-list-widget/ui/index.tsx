@@ -1,8 +1,8 @@
 import styles from './operations-list-widget.module.scss';
-import { Card } from '@/shared/components/card';
 import { FC } from 'react';
 import { OperationsListItemWidget } from '@/widgets';
 import { Operation } from '@/shared/api-types.ts';
+import { CardWithObserver } from '@/shared/components/card';
 
 export type OperationsListPropsType = {
   operations?: Operation[];
@@ -25,7 +25,7 @@ export const OperationsListWidget: FC<OperationsListPropsType> = ({
   return (
     <ul className={styles.operations}>
       {operations.map((operation, idx) => (
-        <Card
+        <CardWithObserver
           key={operation.id}
           width={420}
           isLast={operations.length - 1 === idx}
@@ -37,7 +37,7 @@ export const OperationsListWidget: FC<OperationsListPropsType> = ({
             operation={operation}
             onClick={() => onItemSelect?.(operation)}
           />
-        </Card>
+        </CardWithObserver>
       ))}
     </ul>
   );

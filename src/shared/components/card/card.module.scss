@@ -6,7 +6,7 @@
   box-shadow: variables.$main-shadow;
   padding: 10px;
   margin: 0 auto;
-  border: 2px solid;
+  border: 2px solid transparent;
   display: flex;
   transition: border-color 0.3s;
   height: max-content;
