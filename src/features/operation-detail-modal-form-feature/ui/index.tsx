@@ -99,7 +99,7 @@ export const OperationDetailModalFormFeature: FC<
     const variables: OperationUpdateInput = {
       name,
       desc,
-      date: dateHelper.dateToIsoString(date),
+      date: dateHelper.dateToISOString(date),
       amount: Number(amount),
       categoryId,
     };
