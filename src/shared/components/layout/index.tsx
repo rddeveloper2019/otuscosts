@@ -3,12 +3,15 @@ import { FC, PropsWithChildren, ReactNode, useEffect } from 'react';
 import { AuthZone } from '@/app/providers/auth-zone';
 import { useOperationsQuery } from '@/shared/models/operations/hooks/useOperationsQuery';
 import { useCategoriesQuery } from '@/shared/models';
+import { useAuthSelector } from '@/app/store/selectors.ts';
 
 export type LayoutProps = PropsWithChildren & {
   header: ReactNode;
 };
 
 export const Layout: FC<LayoutProps> = ({ header, children }) => {
+  const { isAuth } = useAuthSelector();
+
   const {
     loader: getOperationsLoader,
     loadOperations,
@@ -22,8 +25,10 @@ export const Layout: FC<LayoutProps> = ({ header, children }) => {
   } = useCategoriesQuery();
 
   useEffect(() => {
-    loadCategories().then(loadOperations);
-  }, []);
+    if (isAuth) {
+      loadCategories().then(loadOperations);
+    }
+  }, [isAuth]);
 
   return (
     <>

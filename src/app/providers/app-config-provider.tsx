@@ -1,4 +1,10 @@
-import { createContext, PropsWithChildren, useEffect, useState } from 'react';
+import {
+  createContext,
+  PropsWithChildren,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from 'react';
 import { Lang } from '@/app/lang/types.ts';
 import { Theme } from '@/app/theme/types.ts';
 import { applyNewTheme } from '@/app/theme/applyTheme.ts';
@@ -37,6 +43,10 @@ export const AppConfigProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     dispatch(initApp());
+  }, []);
+
+  useLayoutEffect(() => {
+    applyNewTheme(theme);
   }, []);
 
   useEffect(() => {
